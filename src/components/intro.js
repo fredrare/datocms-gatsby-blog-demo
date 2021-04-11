@@ -8,7 +8,7 @@ export default function Intro() {
         { siteName }
       </h1>
       <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        La web de tus sueños.
+        No es la web de mis sueños.
       </h4>
     </section>
   )
