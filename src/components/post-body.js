@@ -24,7 +24,6 @@ export default function PostBody({ content }) {
           ]}
           data={ content }
           renderBlock={({ record }) => {
-            console.log(record)
             if (record.__typename === "DatoCmsImageBlock") {
               return <Image fluid={record.image.fluid} />;
             }
