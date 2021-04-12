@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'gatsby';
 import Image from "gatsby-image";
 import { appendKeyToValidElement, renderRule, StructuredText } from "react-datocms";
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
@@ -42,7 +43,14 @@ const renderInlineCode = renderRule(
 
 const renderBlock = ({ record }) => {
   if (record.__typename === "DatoCmsImageBlock") {
-    return <Image fluid={record.image.fluid} />;
+    if (record.image.customData.isLink)
+      return (
+        <Link to={record.image.customData.isLink} className="hover:underline">
+            <Image fluid={record.image.fluid} />
+        </Link>
+      )
+    else
+      return <Image fluid={record.image.fluid} />
   }
   return (
     <>

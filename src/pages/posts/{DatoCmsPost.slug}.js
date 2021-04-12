@@ -48,6 +48,7 @@ export const query = graphql`
           ... on DatoCmsImageBlock {
             id: originalId
             image {
+              customData
               fluid(
                 imgixParams: { fm: "jpg" }
                 sizes: "(max-width: 700) 100vw, 700px"
