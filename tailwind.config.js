@@ -3,16 +3,6 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      typography: (theme) => ({
-        default: {
-          css: {
-            "code::before": false,
-            "code::after": false,
-            "blockquote p:first-of-type::before": false,
-            "blockquote p:last-of-type::after": false,
-          },
-        },
-      }),
       colors: {
         "accent-1": "#FAFAFA",
         "accent-2": "#EAEAEA",

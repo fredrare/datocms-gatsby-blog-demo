@@ -2,7 +2,55 @@ import React from "react";
 import Image from "gatsby-image";
 import { appendKeyToValidElement, renderRule, StructuredText } from "react-datocms";
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import {xonokai as style} from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { vs as inlineStyle, xonokai as codeBlockStyle } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
+const renderCodeBlock = renderRule(
+  (node) => {
+    return node.type === 'code'
+  },
+  ({ node, key }) => {
+    return appendKeyToValidElement(
+      (
+      <SyntaxHighlighter 
+        showLineNumbers={true}
+        style={codeBlockStyle} 
+        language={node.language} 
+        children={node.code} 
+      />),
+      key
+    )
+  }
+)
+
+const renderInlineCode = renderRule(
+  (node) => {
+    return node.type === 'span' && node.marks && node.marks[0] === 'code'
+  },
+  ({ node, key }) => {
+    return appendKeyToValidElement(
+      (<SyntaxHighlighter 
+          PreTag="span"
+          CodeTag="span"
+          style={inlineStyle}
+          customStyle={{padding: "0.2em"}}
+          children={node.value}
+        />),
+      key
+    )
+  }
+)
+
+const renderBlock = ({ record }) => {
+  if (record.__typename === "DatoCmsImageBlock") {
+    return <Image fluid={record.image.fluid} />;
+  }
+  return (
+    <>
+      <p>Don't know how to render a block!</p>
+      <pre>{JSON.stringify(record, null, 2)}</pre>
+    </>
+  );
+}
 
 export default function PostBody({ content }) {
   return (
@@ -10,30 +58,11 @@ export default function PostBody({ content }) {
       <div className="prose prose-lg prose-blue">
         <StructuredText
           customRules={[
-            renderRule(
-              (node) => {
-                return node.type === 'code'
-              },
-              ({ node, key }) => {
-                return appendKeyToValidElement(
-                  (<SyntaxHighlighter style={style} language={node.language} children={node.code} />),
-                  key
-                )
-              }
-            )
+            renderCodeBlock,
+            renderInlineCode
           ]}
           data={ content }
-          renderBlock={({ record }) => {
-            if (record.__typename === "DatoCmsImageBlock") {
-              return <Image fluid={record.image.fluid} />;
-            }
-            return (
-              <>
-                <p>Don't know how to render a block!</p>
-                <pre>{JSON.stringify(record, null, 2)}</pre>
-              </>
-            );
-          }}
+          renderBlock={ renderBlock }
         />
       </div>
     </div>
