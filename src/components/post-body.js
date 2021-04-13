@@ -45,7 +45,7 @@ const renderBlock = ({ record }) => {
   if (record.__typename === "DatoCmsImageBlock") {
     if (record.image.customData.isLink)
       return (
-        <Link to={record.image.customData.isLink} className="hover:underline">
+        <Link to={record.image.customData.link} title={record.image.customData.linkAlt}>
             <Image fluid={record.image.fluid} />
         </Link>
       )

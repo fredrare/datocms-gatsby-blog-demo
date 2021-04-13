@@ -18,7 +18,7 @@ export default function CoverImage({ title, fluid, slug }) {
   return (
     <div className="-mx-5 sm:mx-0">
       {slug ? (
-        <Link to={`/posts/${slug}`} aria-label={title}>
+        <Link to={`/posts/${slug}`} aria-label={title} title={title}>
           {image}
         </Link>
       ) : (
