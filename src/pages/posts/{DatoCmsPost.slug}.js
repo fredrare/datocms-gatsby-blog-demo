@@ -9,9 +9,12 @@ import SectionSeparator from "../../components/section-separator";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 
 export default function Post({ data: { site, post, morePosts } }) {
+  const lang = {
+    lang: 'es'
+  }
   return (
     <Container>
-      <HelmetDatoCms seo={post.seo} favicon={site.favicon} />
+      <HelmetDatoCms seo={post.seo} favicon={site.favicon}  htmlAttributes={lang} />
       <Header />
       <article>
         <PostHeader
