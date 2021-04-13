@@ -9,10 +9,12 @@ import { graphql } from "gatsby";
 export default function Index({ data: { allPosts, site, blog } }) {
   const heroPost = allPosts.nodes[0];
   const morePosts = allPosts.nodes.slice(1);
-
+  const lang = {
+    lang: 'es'
+  }
   return (
     <Container>
-      <HelmetDatoCms seo={blog.seo} favicon={site.favicon} />
+      <HelmetDatoCms seo={blog.seo} favicon={site.favicon} htmlAttributes={lang} />
       <Intro />
       {heroPost && (
         <HeroPost
