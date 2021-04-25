@@ -50,12 +50,11 @@ module.exports = {
               }
             `,
             serialize: function({query: { posts }}) {
-              console.log(JSON.stringify(posts))
               return posts.edges.map(({ node }) => ({
-                description: node.excerpt.trim(),
-                author: node.author.name.trim(),
-                date: node.date.trim(),
-                title: node.title.trim(),
+                description: node.excerpt,
+                author: node.author.name,
+                date: node.date,
+                title: node.title,
                 url: `${process.env.HOSTNAME}${pathPrefix}/${node.slug}`
               }))
             },
