@@ -5,10 +5,11 @@ import Header from "../../components/header";
 import MoreStories from "../../components/more-stories";
 import PostBody from "../../components/post-body";
 import PostHeader from "../../components/post-header";
+import Footer from "../../components/footer";
 import SectionSeparator from "../../components/section-separator";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 
-export default function Post({ data: { site, post, morePosts } }) {
+export default function Post({ data: { blog, site, post, morePosts } }) {
   const lang = {
     lang: 'es'
   }
@@ -27,6 +28,7 @@ export default function Post({ data: { site, post, morePosts } }) {
       </article>
       <SectionSeparator />
       {morePosts.nodes.length > 0 && <MoreStories posts={morePosts.nodes} />}
+      <Footer socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]} />
     </Container>
   );
 }
@@ -36,6 +38,52 @@ export const query = graphql`
     site: datoCmsSite {
       favicon: faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    blog: datoCmsBlog {
+      discordImage {
+        title
+        alt
+        customData
+        fixed(
+          width: 50
+          imgixParams: { fm: "png" }
+        ) {
+          ...GatsbyDatoCmsFixed
+        }
+      }
+      rssImage {
+        title
+        alt
+        customData
+        fixed(
+          width: 50
+          imgixParams: { fm: "png" }
+        ) {
+          ...GatsbyDatoCmsFixed
+        }
+      }
+      twitchImage {
+        title
+        alt
+        customData
+        fixed(
+          width: 50
+          imgixParams: { fm: "png" }
+        ) {
+          ...GatsbyDatoCmsFixed
+        }
+      }
+      youtubeImage {
+        title
+        alt
+        customData
+        fixed(
+          width: 50
+          imgixParams: { fm: "png" }
+        ) {
+          ...GatsbyDatoCmsFixed
+        }
       }
     }
     post: datoCmsPost(id: { eq: $id }) {

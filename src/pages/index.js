@@ -1,5 +1,6 @@
 import React from "react";
 import Container from "../components/container";
+import Footer from "../components/footer";
 import HeroPost from "../components/hero-post";
 import Intro from "../components/intro";
 import MoreStories from "../components/more-stories";
@@ -27,6 +28,7 @@ export default function Index({ data: { allPosts, site, blog } }) {
         />
       )}
       {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+      <Footer socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]}/>
     </Container>
   );
 }
@@ -41,6 +43,50 @@ export const query = graphql`
     blog: datoCmsBlog {
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
+      }
+      discordImage {
+        title
+        alt
+        customData
+        fixed(
+          width: 50
+          imgixParams: { fm: "png" }
+        ) {
+          ...GatsbyDatoCmsFixed
+        }
+      }
+      rssImage {
+        title
+        alt
+        customData
+        fixed(
+          width: 50
+          imgixParams: { fm: "png" }
+        ) {
+          ...GatsbyDatoCmsFixed
+        }
+      }
+      twitchImage {
+        title
+        alt
+        customData
+        fixed(
+          width: 50
+          imgixParams: { fm: "png" }
+        ) {
+          ...GatsbyDatoCmsFixed
+        }
+      }
+      youtubeImage {
+        title
+        alt
+        customData
+        fixed(
+          width: 50
+          imgixParams: { fm: "png" }
+        ) {
+          ...GatsbyDatoCmsFixed
+        }
       }
     }
     allPosts: allDatoCmsPost(sort: { fields: date, order: DESC }, limit: 20) {

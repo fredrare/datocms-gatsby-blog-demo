@@ -33,7 +33,7 @@ const renderInlineCode = renderRule(
           PreTag="span"
           CodeTag="span"
           style={inlineStyle}
-          customStyle={{padding: "0.2em"}}
+          customStyle={{padding: "0.15em"}}
           children={node.value}
         />),
       key

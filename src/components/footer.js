@@ -1,29 +1,39 @@
-import Container from './container'
+import React from "react"
+import { Link } from 'gatsby'
+import Image from "gatsby-image"
+import { siteName } from '../common/strings'
 
-export default function Footer() {
+
+export default function Footer({ socialMedia }) {
   return (
-    <footer className="bg-accent-1 border-t border-accent-2">
-      <Container>
-        <div className="py-28 flex flex-col lg:flex-row items-center">
-          <h3 className="text-4xl lg:text-5xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
-            Statically Generated with Next.js.
-          </h3>
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
-            <a
-              href="https://www.datocms.com/docs/next-js"
-              className="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0"
-            >
-              Read Documentation
-            </a>
-            <a
-              href="https://github.com/datocms/nextjs-demo"
-              className="mx-3 font-bold hover:underline"
-            >
-              View on GitHub
-            </a>
-          </div>
-        </div>
-      </Container>
-    </footer>
+<nav className="justify-between px-3 py-5 bg-gray-100">
+  <div className="px-4 mx-auto flex flex-wrap items-center justify-between">
+    <div className="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
+      <Link to="/" title={siteName}>
+        { siteName }
+      </Link>
+      {' (Derechos reservados - 2021)'}
+    </div>
+    <div>
+      <ul className="flex flex-col lg:flex-row list-none ml-auto">
+        {
+          socialMedia.map( platformImage => {
+            return (
+              <li>
+                <a
+                  href={platformImage.customData.link}
+                  title={platformImage.title}
+                  className="px-3 py-2 hover:opacity-75">
+                  <Image fixed={platformImage.fixed} alt={platformImage.alt}/>
+                </a>
+              </li>
+            )
+            }
+          )
+        }
+      </ul>
+    </div>
+  </div>
+</nav>
   )
 }
