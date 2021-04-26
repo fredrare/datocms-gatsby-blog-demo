@@ -7,19 +7,18 @@ import { siteName } from '../common/strings'
 export default function Footer({ socialMedia }) {
   return (
 <nav className="justify-between px-3 py-5 bg-gray-100">
-  <div className="px-4 mx-auto flex flex-wrap items-center justify-between">
+  <div className="px-4 mx-auto flex flex-wrap items-center justify-between content-center">
     <div className="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
       <Link to="/" title={siteName}>
         { siteName }
       </Link>
       {' (Derechos reservados - 2021)'}
     </div>
-    <div>
-      <ul className="flex flex-col lg:flex-row list-none ml-auto">
+    <div className="items-center flex flex-row">
+      <ul className="flex flex-row list-none ml-auto">
         {
-          socialMedia.map( platformImage => {
-            return (
-              <li>
+          socialMedia.map( platformImage => (
+              <li className="flex items-center">
                 <a
                   href={platformImage.customData.link}
                   title={platformImage.title}
@@ -28,7 +27,6 @@ export default function Footer({ socialMedia }) {
                 </a>
               </li>
             )
-            }
           )
         }
       </ul>
