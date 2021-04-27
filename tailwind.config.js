@@ -1,8 +1,19 @@
 module.exports = {
+  important: 'html',
   purge: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      typography: (theme) => ({
+        unprose: {
+          css: {
+            img: {
+              'margin-top': '0px',
+              'margin-bottom': '0px',
+            },
+          },
+        },
+      }),
       colors: {
         "accent-1": "#FAFAFA",
         "accent-2": "#EAEAEA",

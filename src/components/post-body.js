@@ -46,11 +46,11 @@ const renderBlock = ({ record }) => {
     if (record.image.customData.isLink)
       return (
         <Link to={record.image.customData.link} title={record.image.customData.linkAlt}>
-            <Image fluid={record.image.fluid} />
+            <Image fluid={record.image.fluid}  className="prose-unprose" />
         </Link>
       )
     else
-      return <Image fluid={record.image.fluid} />
+      return <Image fluid={record.image.fluid} className="prose-unprose" />
   }
   return (
     <>

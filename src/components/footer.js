@@ -23,7 +23,7 @@ export default function Footer({ socialMedia }) {
                   href={platformImage.customData.link}
                   title={platformImage.title}
                   className="px-3 py-2 hover:opacity-75">
-                  <Image fixed={platformImage.fixed} alt={platformImage.alt}/>
+                  <Image className="content-center" fixed={platformImage.fixed} alt={platformImage.alt}/>
                 </a>
               </li>
             )
