@@ -5,6 +5,10 @@ import { appendKeyToValidElement, renderRule, StructuredText } from "react-datoc
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import { vs as inlineStyle, xonokai as codeBlockStyle } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
+const justify = {
+  textAlign: 'justify'
+}
+
 const renderCodeBlock = renderRule(
   (node) => {
     return node.type === 'code'
@@ -16,7 +20,11 @@ const renderCodeBlock = renderRule(
         showLineNumbers={true}
         style={codeBlockStyle} 
         language={node.language} 
-        children={node.code} 
+        children={node.code}
+        customStyle={{
+          borderRadius: 4,
+          border: 0
+        }}
       />),
       key
     )
@@ -33,7 +41,12 @@ const renderInlineCode = renderRule(
           PreTag="span"
           CodeTag="span"
           style={inlineStyle}
-          customStyle={{padding: "0.15em"}}
+          customStyle={{
+            padding: "0.15em",
+            backgroundColor: '#F5F5F5',
+            borderRadius: 4,
+            border: 0
+          }}
           children={node.value}
         />),
       key
@@ -54,7 +67,7 @@ const renderBlock = ({ record }) => {
   }
   return (
     <>
-      <p>Don't know how to render a block!</p>
+      <p>Upsy woopsy, algo raro pasó aquí xd</p>
       <pre>{JSON.stringify(record, null, 2)}</pre>
     </>
   );
@@ -63,7 +76,10 @@ const renderBlock = ({ record }) => {
 export default function PostBody({ content }) {
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="prose prose-lg prose-blue">
+      <div
+        className="prose prose-lg prose-blue"
+        style={justify}
+      >
         <StructuredText
           customRules={[
             renderCodeBlock,
