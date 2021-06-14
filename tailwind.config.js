@@ -8,8 +8,9 @@ module.exports = {
         unprose: {
           css: {
             img: {
-              'margin-top': '0px',
-              'margin-bottom': '0px',
+              marginTop: '0px',
+              marginBottom: '0px',
+              maxWidth: '100%'
             },
           },
         },
