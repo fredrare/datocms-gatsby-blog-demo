@@ -10,7 +10,10 @@ export default function Menu() {
     // {name: 'Sobre mí', url: '/about'}
   ]
   return (
-    <header className="flex flex-wrap">
+    <header className="flex flex-wrap w-full" style={{
+      position: 'absolute',
+      top: 0
+    }}>
       <div className="w-full">
         <nav className="relative flex flex-wrap items-center justify-between py-3 bg-pink-500">
           <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">

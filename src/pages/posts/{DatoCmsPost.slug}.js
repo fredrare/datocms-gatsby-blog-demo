@@ -10,13 +10,15 @@ export default function Post({ data: { blog, site, post, morePosts } }) {
   const lang = {
     lang: 'es'
   }
+  const target = React.createRef()
   return (
     <Container
       seo={blog.seo}
       favicon={site.favicon}
       lang={lang}
-      socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]} >
-      <article className="py-4 mt-4">
+      socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]}
+      target={target} >
+      <article className="py-4 mt-4" ref={target}>
         <PostHeader
           title={post.title}
           coverImage={post.coverImage}
