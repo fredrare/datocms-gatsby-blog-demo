@@ -1,43 +1,33 @@
 import React from "react";
-import Container from "../components/container";
-import HeroPost from "../components/hero-post";
-import Intro from "../components/intro";
-import MoreStories from "../components/more-stories";
 import { graphql } from "gatsby";
+import Container from "../../components/container";
+import MoreStories from "../../components/more-stories";
 
-export default function Index({ data: { allPosts, site, blog } }) {
-  const heroPost = allPosts.nodes[0];
-  const morePosts = allPosts.nodes.slice(1);
-  const lang = {
-    lang: 'es'
-  }
-
-  return (
-    <>
+export default function Category({ data: { category, allPosts, site, blog } }) {
+    const lang = {
+      lang: 'es'
+    }
+    return (
       <Container
         seo={blog.seo}
         favicon={site.favicon}
         lang={lang}
         socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]} >
-        <Intro />
-        {heroPost && (
-          <HeroPost
-            title={heroPost.title}
-            coverImage={heroPost.coverImage}
-            date={heroPost.date}
-            author={heroPost.author}
-            slug={heroPost.slug}
-            excerpt={heroPost.excerpt}
-          />
-        )}
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+        <section className="flex-col md:flex-row flex items-center md:justify-between mt-10 mb-16 md:mb-12">
+            <h2 className="mb-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
+                { category.name }
+            </h2>
+            <h4 className="text-center text-lg mt-5 md:pl-8">
+                { category.description }
+            </h4>
+        </section>
+        <MoreStories posts={allPosts.nodes} title='Publicaciones'/>
       </Container>
-    </>
-  );
+    );
 }
 
 export const query = graphql`
-  {
+  query CategoryBySlug($id: String){
     site: datoCmsSite {
       favicon: faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -92,7 +82,12 @@ export const query = graphql`
         }
       }
     }
-    allPosts: allDatoCmsPost(sort: { fields: date, order: DESC }, limit: 20) {
+    category: datoCmsCategory(id: { eq: $id }) {
+      id
+      name
+      description
+    }
+    allPosts: allDatoCmsPost(sort: { fields: date, order: DESC }, limit: 20, filter: {category: {id: {eq: $id}}}) {
       nodes {
         title
         slug

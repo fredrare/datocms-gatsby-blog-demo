@@ -6,7 +6,7 @@ import { siteName } from '../common/strings'
 
 export default function Footer({ socialMedia }) {
   return (
-    <footer className="justify-between px-3 py-5 bg-gray-100">
+    <footer className="w-full justify-between px-3 py-5 bg-gray-100 items-center">
       <div className="px-4 mx-auto flex flex-wrap items-center justify-between content-center">
         <div className="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
           <Link to="/" title={siteName}>
@@ -18,7 +18,7 @@ export default function Footer({ socialMedia }) {
           <ul className="flex flex-row list-none ml-auto">
             {
               socialMedia.map( platformImage => (
-                  <li className="flex items-center">
+                  <li className="flex items-center py-2">
                     <a
                       href={platformImage.customData.link}
                       title={platformImage.title}

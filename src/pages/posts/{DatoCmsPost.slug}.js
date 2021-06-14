@@ -1,23 +1,22 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Container from "../../components/container";
-import Header from "../../components/header";
 import MoreStories from "../../components/more-stories";
 import PostBody from "../../components/post-body";
 import PostHeader from "../../components/post-header";
-import Footer from "../../components/footer";
 import SectionSeparator from "../../components/section-separator";
-import { HelmetDatoCms } from "gatsby-source-datocms";
 
 export default function Post({ data: { blog, site, post, morePosts } }) {
   const lang = {
     lang: 'es'
   }
   return (
-    <Container>
-      <HelmetDatoCms seo={post.seo} favicon={site.favicon}  htmlAttributes={lang} />
-      <Header />
-      <article>
+    <Container
+      seo={blog.seo}
+      favicon={site.favicon}
+      lang={lang}
+      socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]} >
+      <article className="py-4 mt-4">
         <PostHeader
           title={post.title}
           coverImage={post.coverImage}
@@ -28,7 +27,6 @@ export default function Post({ data: { blog, site, post, morePosts } }) {
       </article>
       <SectionSeparator />
       {morePosts.nodes.length > 0 && <MoreStories posts={morePosts.nodes} />}
-      <Footer socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]} />
     </Container>
   );
 }
