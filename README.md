@@ -1,10 +1,10 @@
-# Gatsby Blog Website
+# Fredrare custom blog
 
 This repo contains a static website written with [GatsbyJS](https://www.gatsbyjs.org/), integrated with content coming from [DatoCMS](https://www.datocms.com).
 
-[See the live demo](https://datocms-gatsby-blog-demo.netlify.app/)
+[It's based on this one.](https://datocms-gatsby-blog-demo.netlify.app/)
 
-If you want to use try this out yourself, you first need to set up a project on DatoCMS which will host your data.
+If you want to use try this out yourself, you first need to set up a project on DatoCMS which will host your data. The schema for the modified version I have has not been published yet, so you would have to reverse my queries. It's not that hard tho', because all the queries are in the files in `pages` dirs and subdirs. That said, you can replicate the template's schema and modify it to match mine.
 
 You can [sign up for a free account](https://dashboard.datocms.com/signup) and then you can simply click this button:
 
