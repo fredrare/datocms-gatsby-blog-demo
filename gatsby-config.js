@@ -69,7 +69,7 @@ module.exports = {
         background_color: `#FFF`,
         cache_busting_mode: `none`,
         display: `fullscreen`,
-        icon: `src/images/anti.gif`,
+        icon: `src/images/anti.png`,
         name: `Fredrare.com`,
         short_name: `Fredrare`,
         start_url: `/`,
