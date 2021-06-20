@@ -74,6 +74,9 @@ module.exports = {
         short_name: `Fredrare`,
         start_url: `/`,
         theme_color: `#EC4899`,
+        icon_options: {
+          purpose: `any maskable`
+        }
       },
     },
     {
