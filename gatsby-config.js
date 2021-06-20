@@ -1,16 +1,15 @@
-require('dotenv').config();
+require(`dotenv`).config();
 
-const title = "Fredrare.com"
-const pathPrefix = '/posts'
+const title = `Fredrare.com`
+const pathPrefix = `/posts`
 
 module.exports = {
   siteMetadata: {
     title: title,
   },
   plugins: [
-    'gatsby-plugin-postcss',
     {
-      resolve: "gatsby-source-datocms",
+      resolve: `gatsby-source-datocms`,
       options: {
         apiToken: process.env.DATO_API_TOKEN,
         environment: process.env.DATO_ENVIRONMENT,
@@ -59,12 +58,32 @@ module.exports = {
               }))
             },
             title: title,
-            output: 'feed.rss',
+            output: `feed.rss`,
           }
         ]
       }
     },
-    "gatsby-plugin-sharp",
-    "gatsby-plugin-react-helmet",
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        background_color: `#FFF`,
+        cache_busting_mode: `none`,
+        display: `standalone`,
+        icon: `src/images/anti.gif`,
+        name: `Fredrare.com`,
+        short_name: `Fredrare`,
+        start_url: `/`,
+        theme_color: `#CD4996`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/`],
+      }
+    },
+    `gatsby-plugin-postcss`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sharp`,
   ],
 };
