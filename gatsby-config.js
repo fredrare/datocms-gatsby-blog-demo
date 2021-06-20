@@ -73,7 +73,7 @@ module.exports = {
         name: `Fredrare.com`,
         short_name: `Fredrare`,
         start_url: `/`,
-        theme_color: `#CD4996`,
+        theme_color: `#EC4899`,
       },
     },
     {
