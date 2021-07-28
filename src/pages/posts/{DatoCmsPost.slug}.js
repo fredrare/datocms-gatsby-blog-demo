@@ -10,10 +10,11 @@ export default function Post({ data: { blog, site, post, morePosts } }) {
   const lang = {
     lang: 'es'
   }
+  console.log(post.seo)
   const target = React.createRef()
   return (
     <Container
-      seo={blog.seo}
+      seo={post.seo}
       favicon={site.favicon}
       lang={lang}
       socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]}
