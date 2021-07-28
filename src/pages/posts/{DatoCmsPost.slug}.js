@@ -8,9 +8,8 @@ import SectionSeparator from "../../components/section-separator";
 
 export default function Post({ data: { blog, site, post, morePosts } }) {
   const lang = {
-    lang: 'es'
+    lang: post?.seo?.tags?.find(x => x?.attributes?.property === 'og:locale')?.attributes?.content || 'es'
   }
-  console.log(post.seo)
   const target = React.createRef()
   return (
     <Container
