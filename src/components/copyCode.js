@@ -1,7 +1,6 @@
 import React, { useState, createRef } from 'react'
 
 export default function CopyCode ({ svg, children }) {
-  const [ copyShown, setCopyShown ] = useState(false)
   if (!svg) {
     svg = <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
       viewBox="0 0 488.3 488.3" fill="#EC4899">
@@ -28,10 +27,10 @@ export default function CopyCode ({ svg, children }) {
     zIndex: 1000
   }
 
-  return <div className="relative" onMouseOver={() => setCopyShown(true)} onMouseOut={() => setCopyShown(false)}>
+  return <div className="relative group">
     <div className="absolute top-0 left-0 w-full h-full transition duration-200 ease-in-out">
       <div
-        className={`opacity-${copyShown ? '70' : '0'} absolute w-5 right-4 top-4 cursor-pointer hover:opacity-100 transform duration-300 rotate-0 hover:rotate-360`}
+        className="opacity-0 group-hover:opacity-100 absolute w-5 right-4 top-4 cursor-pointer transform duration-300 rotate-0 hover:rotate-360"
         onClick={copy}
         style={overlay}>
         {svg}
