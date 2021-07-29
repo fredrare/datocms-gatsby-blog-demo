@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from 'gatsby';
 import Image from "gatsby-image";
-import { appendKeyToValidElement, renderRule, StructuredText } from "react-datocms";
+import { appendKeyToValidElement, renderRule, StructuredText } from "react-datocms"
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import CopyCode from "./copyCode";
 import { vs as inlineStyle, xonokai as codeBlockStyle } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 const justify = {
@@ -15,17 +16,18 @@ const renderCodeBlock = renderRule(
   },
   ({ node, key }) => {
     return appendKeyToValidElement(
-      (
-      <SyntaxHighlighter 
-        showLineNumbers={true}
-        style={codeBlockStyle} 
-        language={node.language} 
-        children={node.code}
-        customStyle={{
-          borderRadius: 4,
-          border: 0
-        }}
-      />),
+      <CopyCode>
+        <SyntaxHighlighter 
+          showLineNumbers={true}
+          style={codeBlockStyle} 
+          language={node.language} 
+          children={node.code}
+          customStyle={{
+            borderRadius: 4,
+            border: 0
+          }}
+        />
+      </CopyCode>,
       key
     )
   }
