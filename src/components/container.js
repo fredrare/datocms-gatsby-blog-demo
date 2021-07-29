@@ -11,7 +11,7 @@ export default function Container({ children, seo, favicon, lang, socialMedia, t
 
   return (
     <div
-      className={`${!target ? 'h-screen' : ''} flex-col pt-10`}
+      className={`${!target ? 'h-screen' : ''} flex-col pt-10 selection:text-white selection:bg-main`}
       style={target && containerStyle}
     >
       {target && <ReadingProgress target={target} />}

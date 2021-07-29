@@ -1,10 +1,10 @@
 module.exports = {
+  mode: 'jit',
   important: 'html',
   purge: {
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
     safelist: [
       'opacity-0',
-      'opacity-70',
       'opacity-100'
     ]
   },
@@ -35,6 +35,7 @@ module.exports = {
         },
       }),
       colors: {
+        main: "#EC4899",
         "accent-1": "#FAFAFA",
         "accent-2": "#EAEAEA",
         "accent-7": "#333",
