@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-blog-demo",
-  "version": "1.0.0",
+  "name": "fredrare-blog",
+  "version": "1.0.1",
   "private": true,
-  "description": "Gatsby Blog Demo",
-  "author": "Stefano Verna",
+  "description": "Fredrare's personal blog. Hopefully, it has useful information for you.",
+  "author": "Franco Ramirez",
   "keywords": [
     "gatsby"
   ],
