@@ -1,6 +1,12 @@
 module.exports = {
   important: 'html',
-  purge: ['./src/**/*.{js,jsx,ts,tsx}'],
+  purge: {
+    content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    safelist: [
+      'opacity-70',
+      'opacity-100'
+    ]
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     rotate: {
