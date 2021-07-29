@@ -24,14 +24,21 @@ export default function CopyCode ({ svg, children }) {
     navigator.clipboard.writeText(content)
   }
 
+  const overlay = {
+    zIndex: 1000
+  }
+
   return <div className="relative" onMouseOver={() => setCopyShown(true)} onMouseOut={() => setCopyShown(false)}>
+    <div className="absolute top-0 left-0 w-full h-full transition duration-200 ease-in-out">
+      <div
+        className={`opacity-${copyShown ? '70' : '0'} absolute w-5 right-4 top-4 cursor-pointer hover:opacity-100 transform duration-300 rotate-0 hover:rotate-360`}
+        onClick={copy}
+        style={overlay}>
+        {svg}
+      </div>
+    </div>
     <div ref={contentRef}>
       {children}
-    </div>
-    <div
-      className={`${copyShown ? '' : 'hidden '}absolute w-5 right-4 top-4 cursor-pointer opacity-70 hover:opacity-100 transform duration-300 rotate-0 hover:rotate-360`}
-      onClick={copy}>
-      {svg}
     </div>
   </div>
 }
