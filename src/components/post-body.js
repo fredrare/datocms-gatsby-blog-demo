@@ -24,7 +24,8 @@ const renderCodeBlock = renderRule(
           children={node.code}
           customStyle={{
             borderRadius: 4,
-            border: 0
+            border: 0,
+            paddingRight: '3.5em'
           }}
         />
       </CopyCode>,

@@ -3,6 +3,7 @@ module.exports = {
   purge: {
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
     safelist: [
+      'opacity-0',
       'opacity-70',
       'opacity-100'
     ]
