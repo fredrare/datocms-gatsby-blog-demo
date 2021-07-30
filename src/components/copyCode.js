@@ -16,11 +16,21 @@ export default function CopyCode ({ svg, children }) {
       </g>
     </svg>
   }
+
   const contentRef = createRef()
+
   function copy () {
     if (!contentRef.current) return
-    const content = contentRef.current.textContent.split('\n').map(x => x.substring(1)).join('\n')
-    navigator.clipboard.writeText(content)
+    const content = contentRef.current.innerHTML.replaceAll(/<span[^>]*?class="[^"]*?linenumber[^"]*?".*?>\d*?<\/span>/gi, '')
+    try {
+      navigator.clipboard.write([new window.ClipboardItem({"text/html":new Blob([content], {type: "text/html"})})])
+    } catch (error) {
+      console.error(error)
+      console.error('ClipboardItem not supported by this browser yet. Copying plain text instead of rich text...')
+      const temp = document.createElement('div')
+      temp.innerHTML = content
+      navigator.clipboard.writeText(temp.textContent)
+    }
   }
 
   const overlay = {
