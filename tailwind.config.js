@@ -1,3 +1,5 @@
+require(`dotenv`).config();
+
 module.exports = {
   mode: 'jit',
   important: 'html',
@@ -35,7 +37,7 @@ module.exports = {
         },
       }),
       colors: {
-        main: "#EC4899",
+        main: `#${process.env.PRIMARY_COLOR}`,
         "accent-1": "#FAFAFA",
         "accent-2": "#EAEAEA",
         "accent-7": "#333",

@@ -36,13 +36,21 @@ module.exports = {
                 posts: allDatoCmsPost {
                   edges {
                     node {
+                      date
+                      excerpt
                       slug
                       title
-                      excerpt
                       author {
                         name
+                        picture {
+                          url(imgixParams: {w: "400"})
+                        }
                       }
-                      date
+                      seoSettings {
+                        image {
+                          url
+                        }
+                      }
                     }
                   }
                 }
@@ -54,7 +62,12 @@ module.exports = {
                 author: node.author.name,
                 date: node.date,
                 title: node.title,
-                url: `${process.env.HOSTNAME}${pathPrefix}/${node.slug}`
+                url: `${process.env.HOSTNAME}${pathPrefix}/${node.slug}`,
+                custom_elements: [
+                  {'author:avatar': node.author.picture?.url},
+                  {'site:color': process.env.PRIMARY_COLOR},
+                  {'post:image': node.seoSettings?.image?.url}
+                ]
               }))
             },
             title: title,
@@ -73,7 +86,7 @@ module.exports = {
         name: `Fredrare.com`,
         short_name: `Fredrare`,
         start_url: `/`,
-        theme_color: `#EC4899`,
+        theme_color: `#${process.env.PRIMARY_COLOR}`,
         icon_options: {
           purpose: `any maskable`
         }
