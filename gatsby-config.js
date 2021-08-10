@@ -64,9 +64,9 @@ module.exports = {
                 title: node.title,
                 url: `${process.env.HOSTNAME}${pathPrefix}/${node.slug}`,
                 custom_elements: [
-                  {'author:avatar': node.author.picture?.url},
+                  {'author:avatar': node.author.picture.url},
                   {'site:color': process.env.PRIMARY_COLOR},
-                  {'post:image': node.seoSettings?.image?.url}
+                  {'post:image': node.seoSettings.image.url}
                 ]
               }))
             },
