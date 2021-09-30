@@ -84,7 +84,6 @@ const renderVideo = (record) => {
 }
 
 const renderBlock = ({ record }) => {
-  console.log(record)
   if (record.__typename === "DatoCmsImageBlock")
     return renderImage(record)
   else if (record.__typename === "DatoCmsYoutubeVideo")
