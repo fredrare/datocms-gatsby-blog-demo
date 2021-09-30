@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from 'gatsby';
 import Image from "gatsby-image";
 import { appendKeyToValidElement, renderRule, StructuredText } from "react-datocms"
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import ReactPlayer from 'react-player/youtube'
 import CopyCode from "./copyCode";
 import { vs as inlineStyle, xonokai as codeBlockStyle } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
@@ -17,10 +18,10 @@ const renderCodeBlock = renderRule(
   ({ node, key }) => {
     return appendKeyToValidElement(
       <CopyCode>
-        <SyntaxHighlighter 
+        <SyntaxHighlighter
           showLineNumbers={true}
-          style={codeBlockStyle} 
-          language={node.language} 
+          style={codeBlockStyle}
+          language={node.language}
           children={node.code}
           customStyle={{
             borderRadius: 4,
@@ -40,34 +41,54 @@ const renderInlineCode = renderRule(
   },
   ({ node, key }) => {
     return appendKeyToValidElement(
-      (<SyntaxHighlighter 
-          PreTag="span"
-          CodeTag="span"
-          style={inlineStyle}
-          customStyle={{
-            padding: "0.15em",
-            backgroundColor: '#F5F5F5',
-            borderRadius: 4,
-            border: 0
-          }}
-          children={node.value}
-        />),
+      (<SyntaxHighlighter
+        PreTag="span"
+        CodeTag="span"
+        style={inlineStyle}
+        customStyle={{
+          padding: "0.15em",
+          backgroundColor: '#F5F5F5',
+          borderRadius: 4,
+          border: 0
+        }}
+        children={node.value}
+      />),
       key
     )
   }
 )
 
+const renderImage = (record) => {
+  if (record.image.customData.isLink)
+    return (
+      <Link key={record.originalId} to={record.image.customData.link} title={record.image.customData.linkAlt}>
+        <Image fluid={record.image.fluid} className="prose-unprose" />
+      </Link>
+    )
+  else
+    return <Image fluid={record.image.fluid} className="prose-unprose" />
+}
+
+const renderVideo = (record) => {
+  return <div key={record.originalId} className="rounded-sm shadow-md hover:shadow-lg p-0">
+    <ReactPlayer
+      url={record.video.url}
+      width="100%"
+      config={{
+        youtube: {
+          playerVars: { controls: 1 }
+        }
+      }}
+    />
+  </div>
+}
+
 const renderBlock = ({ record }) => {
-  if (record.__typename === "DatoCmsImageBlock") {
-    if (record.image.customData.isLink)
-      return (
-        <Link to={record.image.customData.link} title={record.image.customData.linkAlt}>
-            <Image fluid={record.image.fluid}  className="prose-unprose" />
-        </Link>
-      )
-    else
-      return <Image fluid={record.image.fluid} className="prose-unprose" />
-  }
+  console.log(record)
+  if (record.__typename === "DatoCmsImageBlock")
+    return renderImage(record)
+  else if (record.__typename === "DatoCmsYoutubeVideo")
+    return renderVideo(record)
   return (
     <>
       <p>Upsy woopsy, algo raro pasó aquí xd</p>
@@ -88,8 +109,8 @@ export default function PostBody({ content }) {
             renderCodeBlock,
             renderInlineCode
           ]}
-          data={ content }
-          renderBlock={ renderBlock }
+          data={content}
+          renderBlock={renderBlock}
         />
       </div>
     </div>

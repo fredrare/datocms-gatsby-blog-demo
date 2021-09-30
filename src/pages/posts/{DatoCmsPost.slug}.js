@@ -108,6 +108,13 @@ export const query = graphql`
               }
             }
           }
+          ... on DatoCmsYoutubeVideo {
+            id: originalId
+            video {
+              url
+              title
+            }
+          }
         }
       }
       date
