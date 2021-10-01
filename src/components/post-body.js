@@ -6,6 +6,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import ReactPlayer from 'react-player/youtube'
 import CopyCode from "./copyCode";
 import { vs as inlineStyle, xonokai as codeBlockStyle } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import "@fontsource/iosevka"
 
 const justify = {
   textAlign: 'justify'
@@ -17,19 +18,33 @@ const renderCodeBlock = renderRule(
   },
   ({ node, key }) => {
     return appendKeyToValidElement(
-      <CopyCode>
-        <SyntaxHighlighter
-          showLineNumbers={true}
-          style={codeBlockStyle}
-          language={node.language}
-          children={node.code}
-          customStyle={{
-            borderRadius: 4,
-            border: 0,
-            paddingRight: '3.5em'
-          }}
-        />
-      </CopyCode>,
+      <div className="font-code">
+        <CopyCode>
+          <SyntaxHighlighter
+            showLineNumbers={true}
+            style={{
+              ...codeBlockStyle,
+              'pre[class*="language-"]': {
+                ...codeBlockStyle['pre[class*="language-"]'],
+                fontFamily: "Iosevka Extended,Consolas,Courier,monospace"
+              },
+              'code[class*="language-"]': {
+                ...codeBlockStyle['code[class*="language-"]'],
+                fontFamily: "Iosevka Extended,Consolas,Courier,monospace"
+              }
+            }}
+            language={node.language}
+            children={node.code}
+            customStyle={{
+              borderRadius: 4,
+              border: 0,
+              paddingRight: '3.5em',
+              fontFamily: 'Iosevka,Consolas,Courier,monospace'
+            }}
+          />
+        </CopyCode>
+      </div>
+      ,
       key
     )
   }
@@ -44,12 +59,23 @@ const renderInlineCode = renderRule(
       (<SyntaxHighlighter
         PreTag="span"
         CodeTag="span"
-        style={inlineStyle}
+        style={{
+          ...inlineStyle,
+          'pre[class*="language-"]': {
+            ...inlineStyle['pre[class*="language-"]'],
+            fontFamily: "Iosevka Extended,Consolas,Courier,monospace"
+          },
+          'code[class*="language-"]': {
+            ...inlineStyle['code[class*="language-"]'],
+            fontFamily: "Iosevka Extended,Consolas,Courier,monospace"
+          }
+        }}
         customStyle={{
           padding: "0.15em",
           backgroundColor: '#F5F5F5',
           borderRadius: 4,
-          border: 0
+          border: 0,
+          fontFamily: 'Iosevka Extended,Consolas,Courier,monospace'
         }}
         children={node.value}
       />),
@@ -97,6 +123,9 @@ const renderBlock = ({ record }) => {
 }
 
 export default function PostBody({ content }) {
+
+  console.log(codeBlockStyle)
+
   return (
     <div className="max-w-2xl mx-auto">
       <div
