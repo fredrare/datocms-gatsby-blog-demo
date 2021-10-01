@@ -38,8 +38,7 @@ const renderCodeBlock = renderRule(
             customStyle={{
               borderRadius: 4,
               border: 0,
-              paddingRight: '3.5em',
-              fontFamily: 'Iosevka,Consolas,Courier,monospace'
+              paddingRight: '3.5em'
             }}
           />
         </CopyCode>
@@ -74,8 +73,7 @@ const renderInlineCode = renderRule(
           padding: "0.15em",
           backgroundColor: '#F5F5F5',
           borderRadius: 4,
-          border: 0,
-          fontFamily: 'Iosevka Extended,Consolas,Courier,monospace'
+          border: 0
         }}
         children={node.value}
       />),
