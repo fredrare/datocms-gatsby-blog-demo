@@ -1,61 +1,84 @@
 import React from "react";
-import { Link } from 'gatsby'
-import { siteName } from '../common/strings'
+import { Link } from "gatsby";
+import { siteName } from "../common/strings";
 
 export default function Menu() {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuItems = [
-    {name: 'Programación', url: '/categories/programming'},
-    {name: 'Seguridad', url: '/categories/security'},
+    { name: "Programación", url: "/categories/programming" },
+    { name: "Seguridad", url: "/categories/security" },
     // {name: 'Sobre mí', url: '/about'}
-  ]
+  ];
   return (
-    <header className="flex flex-wrap w-full" style={{
-      position: 'absolute',
-      top: 0
-    }}>
+    <header
+      className="flex flex-wrap w-full"
+      style={{
+        position: "absolute",
+        top: 0,
+      }}
+    >
       <div className="w-full">
         <nav className="relative flex flex-wrap items-center justify-between py-3 bg-pink-500">
           <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-            <div className="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
+            <div className="w-full relative flex justify-between items-center lg:w-auto px-4 lg:static lg:block lg:justify-start">
               <Link
                 className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-white"
                 to="/"
               >
                 <h1 className="text-6xl md:text-3xl font-bold tracking-tighter leading-tight md:pr-8">
-                  { siteName }
+                  {siteName}
                 </h1>
               </Link>
-              {
-                menuItems?.length && 
+              {menuItems?.length && (
                 <button
-                  className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+                  className="group flex flex-col gap-1 text-white cursor-pointer border border-solid border-transparent rounded bg-transparent lg:hidden outline-none focus:outline-none"
                   type="button"
                   onClick={() => setMenuOpen(!menuOpen)}
                 >
-                  +
+                  <div
+                    className={`w-6 transform-gpu duration-300 ease-out ${
+                      menuOpen ? "translate-y-2full" : ""
+                    }`}
+                  >
+                    <div
+                      className={`w-full h-1 bg-white ${
+                        menuOpen ? "rotate-45" : "rounded"
+                      } transform-gpu duration-300 delay-300 ease-out`}
+                    ></div>
+                  </div>
+                  <div className={`w-6`}>
+                    <div
+                      className={`w-full h-1 bg-white ${
+                        menuOpen ? "rotate-45" : "rounded"
+                      } transform-gpu duration-300 delay-300 ease-out`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`w-6 transform-gpu duration-300 ease-out ${
+                      menuOpen ? "-translate-y-2full" : ""
+                    }`}
+                  >
+                    <div
+                      className={`w-full h-1 bg-white ${
+                        menuOpen ? "-rotate-45" : "rounded"
+                      } transform-gpu duration-300 delay-300 ease-out`}
+                    ></div>
+                  </div>
                 </button>
-              }
+              )}
             </div>
-            <div
-              className={
-                "lg:flex flex-grow items-center" +
-                (menuOpen ? " flex" : " hidden")
-              }
-            >
+            <div className={"lg:flex flex-grow items-center" + (menuOpen ? " flex" : " hidden")}>
               <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-                {
-                  menuItems?.map(menuItem => 
-                    <li className="nav-item">
-                      <Link
-                        className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                        to={menuItem.url}
-                      >
-                        {menuItem.name}
-                      </Link>
-                    </li>
-                  )
-                }
+                {menuItems?.map((menuItem, i) => (
+                  <li className="nav-item" key={`menu-${i}`}>
+                    <Link
+                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      to={menuItem.url}
+                    >
+                      {menuItem.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

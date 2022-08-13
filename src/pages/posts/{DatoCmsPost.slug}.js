@@ -8,16 +8,19 @@ import SectionSeparator from "../../components/section-separator";
 
 export default function Post({ data: { blog, site, post, morePosts } }) {
   const lang = {
-    lang: post?.seo?.tags?.find(x => x?.attributes?.property === 'og:locale')?.attributes?.content || 'es'
-  }
-  const target = React.createRef()
+    lang:
+      post?.seo?.tags?.find(x => x?.attributes?.property === "og:locale")?.attributes?.content ||
+      "es",
+  };
+  const target = React.createRef();
   return (
     <Container
       seo={post.seo}
       favicon={site.favicon}
       lang={lang}
       socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]}
-      target={target} >
+      target={target}
+    >
       <article className="py-4 mt-4" ref={target}>
         <PostHeader
           title={post.title}
@@ -45,10 +48,7 @@ export const query = graphql`
         title
         alt
         customData
-        fixed(
-          width: 50
-          imgixParams: { fm: "png" }
-        ) {
+        fixed(width: 50, imgixParams: { fm: "png" }) {
           ...GatsbyDatoCmsFixed
         }
       }
@@ -56,10 +56,7 @@ export const query = graphql`
         title
         alt
         customData
-        fixed(
-          width: 50
-          imgixParams: { fm: "png" }
-        ) {
+        fixed(width: 50, imgixParams: { fm: "png" }) {
           ...GatsbyDatoCmsFixed
         }
       }
@@ -67,10 +64,7 @@ export const query = graphql`
         title
         alt
         customData
-        fixed(
-          width: 50
-          imgixParams: { fm: "png" }
-        ) {
+        fixed(width: 50, imgixParams: { fm: "png" }) {
           ...GatsbyDatoCmsFixed
         }
       }
@@ -78,10 +72,7 @@ export const query = graphql`
         title
         alt
         customData
-        fixed(
-          width: 50
-          imgixParams: { fm: "png" }
-        ) {
+        fixed(width: 50, imgixParams: { fm: "png" }) {
           ...GatsbyDatoCmsFixed
         }
       }
@@ -100,10 +91,7 @@ export const query = graphql`
             id: originalId
             image {
               customData
-              fluid(
-                imgixParams: { fm: "jpg" }
-                sizes: "(max-width: 700) 100vw, 700px"
-              ) {
+              fluid(imgixParams: { fm: "webp" }, sizes: "(max-width: 700) 100vw, 700px") {
                 ...GatsbyDatoCmsFluid
               }
             }
@@ -119,21 +107,14 @@ export const query = graphql`
       }
       date
       coverImage {
-        fluid(
-          imgixParams: { fm: "jpg" }
-          sizes: "(max-width: 1500px) 100vw, 1500px"
-        ) {
+        fluid(imgixParams: { fm: "webp" }, sizes: "(max-width: 1500px) 100vw, 1500px") {
           ...GatsbyDatoCmsFluid
         }
       }
       author {
         name
         picture {
-          fixed(
-            width: 48
-            height: 48
-            imgixParams: { fm: "jpg", fit: "crop", sat: -50 }
-          ) {
+          fixed(width: 48, height: 48, imgixParams: { fm: "webp", fit: "crop", sat: -50 }) {
             ...GatsbyDatoCmsFixed
           }
         }
@@ -151,7 +132,7 @@ export const query = graphql`
         date
         coverImage {
           small: fluid(
-            imgixParams: { fm: "jpg" }
+            imgixParams: { fm: "webp" }
             sizes: "(max-width: 760px) 100vw, (max-width: 1500px) 50vw, 700px"
           ) {
             ...GatsbyDatoCmsFluid
@@ -160,11 +141,7 @@ export const query = graphql`
         author {
           name
           picture {
-            fixed(
-              width: 48
-              height: 48
-              imgixParams: { fm: "jpg", fit: "crop", sat: -50 }
-            ) {
+            fixed(width: 48, height: 48, imgixParams: { fm: "webp", fit: "crop", sat: -50 }) {
               ...GatsbyDatoCmsFixed
             }
           }

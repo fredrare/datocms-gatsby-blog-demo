@@ -6,12 +6,14 @@ import ReadingProgress from "./reading-progress-bar";
 
 export default function Container({ children, seo, favicon, lang, socialMedia, target }) {
   const containerStyle = {
-    minHeight: '100%'
-  }
+    minHeight: "100%",
+  };
 
   return (
     <div
-      className={`${!target ? 'h-screen' : ''} flex-col pt-10 selection:text-white selection:bg-main`}
+      className={`${
+        !target ? "h-full" : ""
+      } flex-col pt-10 selection:text-white selection:bg-main bg-slate-50`}
       style={target && containerStyle}
     >
       {target && <ReadingProgress target={target} />}
@@ -22,5 +24,5 @@ export default function Container({ children, seo, favicon, lang, socialMedia, t
       </div>
       <Footer socialMedia={socialMedia} />
     </div>
-  )
+  );
 }

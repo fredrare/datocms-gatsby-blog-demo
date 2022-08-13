@@ -1,41 +1,27 @@
 require(`dotenv`).config();
 
 module.exports = {
-  mode: 'jit',
-  important: 'html',
-  purge: {
-    content: ['./src/**/*.{js,jsx,ts,tsx}'],
-    safelist: [
-      'opacity-0',
-      'opacity-100'
-    ]
-  },
-  darkMode: false, // or 'media' or 'class'
+  future: {},
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    rotate: {
-      '-180': '-180deg',
-      '-90': '-90deg',
-      '-45': '-45deg',
-      '0': '0',
-      '45': '45deg',
-      '90': '90deg',
-      '135': '135deg',
-      '180': '180deg',
-      '270': '270deg',
-      '360': '360deg'
-    },
     extend: {
-      typography: (theme) => ({
+      typography: theme => ({
         unprose: {
           css: {
             img: {
-              marginTop: '0px',
-              marginBottom: '0px',
-              maxWidth: '100%'
+              marginTop: "0px",
+              marginBottom: "0px",
+              maxWidth: "100%",
             },
           },
         },
       }),
+      rotate: {
+        360: "360deg",
+      },
+      dropShadow: {
+        solid: "1px 2px 0px #4A4B5A",
+      },
       colors: {
         main: `#${process.env.PRIMARY_COLOR}`,
         "accent-1": "#FAFAFA",
@@ -43,9 +29,12 @@ module.exports = {
         "accent-7": "#333",
         success: "#0070f3",
         cyan: "#79FFE1",
+        code: "#2A2A2A",
       },
       spacing: {
         28: "7rem",
+        "1px": "1px",
+        "2full": "200%",
       },
       letterSpacing: {
         tighter: "-.04em",
@@ -62,6 +51,12 @@ module.exports = {
       boxShadow: {
         small: "0 5px 10px rgba(0, 0, 0, 0.12)",
         medium: "0 8px 30px rgba(0, 0, 0, 0.12)",
+        solid: "1px 2px 0px 0px #4A4B5A",
+        "solid-md": "4px 4px 0px 0px #4A4B5A",
+        "solid-lg": "8px 8px 0px 0px #4A4B5A",
+      },
+      borderWidth: {
+        min: "0.5px",
       },
     },
   },
