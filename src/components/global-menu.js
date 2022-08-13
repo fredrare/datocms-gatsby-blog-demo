@@ -46,10 +46,10 @@ export default function Menu() {
                       } transform-gpu duration-300 delay-300 ease-out`}
                     ></div>
                   </div>
-                  <div className={`w-6`}>
+                  <div className={`w-6 overflow-x-hidden`}>
                     <div
                       className={`w-full h-1 bg-white ${
-                        menuOpen ? "rotate-45" : "rounded"
+                        menuOpen ? "scale-x-0" : "rounded"
                       } transform-gpu duration-300 delay-300 ease-out`}
                     ></div>
                   </div>
