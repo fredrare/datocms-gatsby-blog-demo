@@ -5,10 +5,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { appendKeyToValidElement, renderNodeRule, StructuredText } from "react-datocms";
 import ReactPlayer from "react-player/youtube";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import {
-  vs as inlineStyle,
-  xonokai as codeBlockStyle,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
+import { xonokai as codeBlockStyle } from "react-syntax-highlighter/dist/esm/styles/prism";
 import CopyCode from "./copyCode";
 
 const justify = {
@@ -29,9 +26,6 @@ const renderCodeBlock = renderNodeRule(isCode, ({ node, key }) => {
           ...codeBlockStyle,
           'pre[class*="language-"]': {
             ...codeBlockStyle['pre[class*="language-"]'],
-            fontFamily: "Iosevka Extended,JuliaMono,Consolas,Courier,monospace",
-            fontVariantLigatures: "normal discretionary-ligatures historical-ligatures",
-            fontVariantNumeric: "slashed-zero",
           },
           'code[class*="language-"]': {
             ...codeBlockStyle['code[class*="language-"]'],
@@ -113,32 +107,14 @@ const renderInlineCode = renderNodeRule(
   },
   ({ node, key }) => {
     return appendKeyToValidElement(
-      <SyntaxHighlighter
-        PreTag="span"
-        CodeTag="span"
+      <span
+        className="inline-code rounded bg-slate-200 text-slate-800 px-2 py-1 font-monoligatures slashed-zero"
         style={{
-          ...inlineStyle,
-          'pre[class*="language-"]': {
-            ...inlineStyle['pre[class*="language-"]'],
-            fontFamily: "Iosevka Extended,JuliaMono,Consolas,Courier,monospace",
-            fontVariantLigatures: "normal discretionary-ligatures historical-ligatures",
-            fontVariantNumeric: "slashed-zero",
-          },
-          'code[class*="language-"]': {
-            ...inlineStyle['code[class*="language-"]'],
-            fontFamily: "Iosevka Extended,JuliaMono,Consolas,Courier,monospace",
-            fontVariantLigatures: "normal discretionary-ligatures historical-ligatures",
-            fontVariantNumeric: "slashed-zero",
-          },
+          fontVariantLigatures: ["normal", "discretionary-ligatures", "historical-ligatures"],
         }}
-        customStyle={{
-          padding: "0.15rem 0.4rem",
-          backgroundColor: "#E2E8F0",
-          borderRadius: 4,
-          border: 0,
-        }}
-        children={node.value}
-      />,
+      >
+        {node.value}
+      </span>,
       key
     );
   }

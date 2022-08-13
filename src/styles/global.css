@@ -4,3 +4,12 @@
 @tailwind utilities;
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono-regular.css');
+
+.inline-code {
+  font-variant-ligatures: normal discretionary-ligatures historical-ligatures;
+}
+
+p .inline-code {
+  font-size: 0.875rem;
+}
+

@@ -58,6 +58,9 @@ module.exports = {
       borderWidth: {
         min: "0.5px",
       },
+      fontFamily: {
+        monoligatures: ["Iosevka Extended", "JuliaMono", "Consolas", "Courier", "monospace"],
+      },
     },
   },
   variants: {
