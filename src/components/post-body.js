@@ -2,7 +2,7 @@ import "@fontsource/iosevka";
 import { isCode } from "datocms-structured-text-utils";
 import { Link } from "gatsby";
 import Image from "gatsby-image";
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { appendKeyToValidElement, renderNodeRule, StructuredText } from "react-datocms";
 import ReactPlayer from "react-player/youtube";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -17,9 +17,11 @@ const justify = {
 };
 
 const renderCodeBlock = renderNodeRule(isCode, ({ node, key }) => {
-  const filename = node.code.match(/^\§ ?(.+?) ?\§/g);
+  const filename = node.code
+    .match(/^§ ?(.+?) ?§/g)?.[0]
+    .replaceAll("§", "")
+    .trim();
   if (filename) node.code = node.code.split("\n").slice(1).join("\n");
-  console.log(filename);
   return appendKeyToValidElement(
     <div className="font-code">
       <SyntaxHighlighter
@@ -44,6 +46,11 @@ const renderCodeBlock = renderNodeRule(isCode, ({ node, key }) => {
         }}
         PreTag={({ children }) => {
           const [open, setOpen] = useState(true);
+          const [height, setHeight] = useState(0);
+          const codeRef = useRef();
+          useEffect(() => {
+            setHeight(codeRef?.current?.offsetHeight);
+          }, []);
           return (
             <pre className="rounded-lg border-white shadow-solid-md flex flex-col p-0 overflow-hidden">
               <button
@@ -73,17 +80,21 @@ const renderCodeBlock = renderNodeRule(isCode, ({ node, key }) => {
                   </div>
                 </div>
                 <p className="text-xs flex items-center h-max m-auto">
-                  {open
-                    ? node.language +
-                      (filename ? " - " + filename[0].replaceAll("§", "").trim() : "")
-                    : "Clic para mostrar"}
+                  {open ? node.language + (filename ? " - " + filename : "") : "Clic para mostrar"}
                 </p>
               </button>
-              {open && (
+              <section
+                className="transition-[max-height] duration-200 ease-in-out"
+                style={{
+                  maxHeight: open ? height + "px" : 0,
+                }}
+              >
                 <CopyCode>
-                  <div className="p-4 overflow-scroll">{children}</div>
+                  <div className="p-4 overflow-scroll" ref={codeRef}>
+                    {children}
+                  </div>
                 </CopyCode>
-              )}
+              </section>
             </pre>
           );
         }}
@@ -169,8 +180,6 @@ const renderBlock = ({ record }) => {
 };
 
 export default function PostBody({ content }) {
-  console.log(codeBlockStyle);
-
   return (
     <div className="max-w-2xl mx-auto">
       <div className="prose prose-lg prose-blue" style={justify}>
