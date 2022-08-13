@@ -5,9 +5,9 @@ import { siteName } from "../common/strings";
 
 export default function Footer({ socialMedia }) {
   return (
-    <footer className="w-full justify-between px-3 py-5 bg-gray-100 items-center">
-      <div className="px-4 mx-auto flex flex-wrap items-center justify-between content-center">
-        <div className="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
+    <footer className="w-full px-3 py-5 bg-gray-100 items-center">
+      <div className="px-4 mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-center md:justify-between content-center">
+        <div className="flex justify-start gap-4">
           <Link to="/" title={siteName}>
             {siteName}
           </Link>

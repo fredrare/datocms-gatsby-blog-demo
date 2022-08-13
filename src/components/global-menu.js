@@ -11,7 +11,7 @@ export default function Menu() {
   ];
   return (
     <header
-      className="flex flex-wrap w-full"
+      className="flex flex-wrap w-full items-center justify-center"
       style={{
         position: "absolute",
         top: 0,
@@ -19,7 +19,7 @@ export default function Menu() {
     >
       <div className="w-full">
         <nav className="relative flex flex-wrap items-center justify-between py-3 bg-pink-500">
-          <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+          <div className="container px-4 mx-auto flex flex-wrap items-center justify-between max-w-6xl">
             <div className="w-full relative flex justify-between items-center lg:w-auto px-4 lg:static lg:block lg:justify-start">
               <Link
                 className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-white"

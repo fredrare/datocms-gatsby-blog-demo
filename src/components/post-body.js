@@ -164,8 +164,8 @@ const renderBlock = ({ record }) => {
 
 export default function PostBody({ content }) {
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="prose prose-lg prose-blue" style={justify}>
+    <div className="max-w-3xl mx-auto">
+      <div className="prose prose-lg prose-blue max-w-3xl" style={justify}>
         <StructuredText
           customRules={[renderCodeBlock, renderInlineCode]}
           data={content}
