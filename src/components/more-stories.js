@@ -19,7 +19,7 @@ export default function MoreStories({ posts, title }) {
       <h2 className="mb-8 text-6xl md:text-6xl font-bold tracking-tighter leading-tight">
         {title || "Más publicaciones"}
       </h2>
-      <ul className="grid grid-cols-2 gap-4 md:gap-8 mb-32">
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-32">
         {morePosts?.length ? morePosts : <div>No hay publicaciones aún...</div>}
       </ul>
     </section>

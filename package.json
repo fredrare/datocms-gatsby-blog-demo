@@ -8,14 +8,13 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
+    "develop": "gatsby develop -H 0.0.0.0",
+    "start": "gatsby develop -H 0.0.0.0",
     "build": "cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve -H 0.0.0.0",
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@fontsource/iosevka": "^4.5.1",
     "@tailwindcss/typography": "^0.5.4",
     "autoprefixer": "^10.4.8",
     "date-fns": "^2.22.1",

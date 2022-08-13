@@ -1,4 +1,3 @@
-import "@fontsource/iosevka";
 import { isCode } from "datocms-structured-text-utils";
 import { Link } from "gatsby";
 import Image from "gatsby-image";
@@ -30,11 +29,15 @@ const renderCodeBlock = renderNodeRule(isCode, ({ node, key }) => {
           ...codeBlockStyle,
           'pre[class*="language-"]': {
             ...codeBlockStyle['pre[class*="language-"]'],
-            fontFamily: "Iosevka Extended,Consolas,Courier,monospace",
+            fontFamily: "Iosevka Extended,JuliaMono,Consolas,Courier,monospace",
+            fontVariantLigatures: "normal discretionary-ligatures historical-ligatures",
+            fontVariantNumeric: "slashed-zero",
           },
           'code[class*="language-"]': {
             ...codeBlockStyle['code[class*="language-"]'],
-            fontFamily: "Iosevka Extended,Consolas,Courier,monospace",
+            fontFamily: "Iosevka Extended,JuliaMono,Consolas,Courier,monospace",
+            fontVariantLigatures: "normal discretionary-ligatures historical-ligatures",
+            fontVariantNumeric: "slashed-zero",
           },
         }}
         language={node.language}
@@ -117,11 +120,15 @@ const renderInlineCode = renderNodeRule(
           ...inlineStyle,
           'pre[class*="language-"]': {
             ...inlineStyle['pre[class*="language-"]'],
-            fontFamily: "Iosevka Extended,Consolas,Courier,monospace",
+            fontFamily: "Iosevka Extended,JuliaMono,Consolas,Courier,monospace",
+            fontVariantLigatures: "normal discretionary-ligatures historical-ligatures",
+            fontVariantNumeric: "slashed-zero",
           },
           'code[class*="language-"]': {
             ...inlineStyle['code[class*="language-"]'],
-            fontFamily: "Iosevka Extended,Consolas,Courier,monospace",
+            fontFamily: "Iosevka Extended,JuliaMono,Consolas,Courier,monospace",
+            fontVariantLigatures: "normal discretionary-ligatures historical-ligatures",
+            fontVariantNumeric: "slashed-zero",
           },
         }}
         customStyle={{
