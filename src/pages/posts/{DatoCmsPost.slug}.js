@@ -8,9 +8,7 @@ import SectionSeparator from "../../components/section-separator";
 
 export default function Post({ data: { post, morePosts } }) {
   const lang = {
-    lang:
-      post?.seo?.tags?.find(x => x?.attributes?.property === "og:locale")?.attributes?.content ||
-      "es",
+    lang: "es",
   };
   const target = React.createRef();
   return (
@@ -62,11 +60,15 @@ export const query = graphql`
       }
       date
       coverImage {
+        alt
+        title
         gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 1500 })
       }
       author {
         name
         picture {
+          alt
+          title
           gatsbyImageData(
             width: 50
             placeholder: BLURRED
@@ -87,11 +89,15 @@ export const query = graphql`
         excerpt
         date
         coverImage {
+          alt
+          title
           gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 760 })
         }
         author {
           name
           picture {
+            alt
+            title
             gatsbyImageData(
               width: 50
               placeholder: BLURRED

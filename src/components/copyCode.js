@@ -63,6 +63,7 @@ export default function CopyCode({ svg, children }) {
         <button
           className="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 absolute w-5 right-4 top-4 cursor-pointer transform duration-300 rotate-0 hover:rotate-360 group-focus-within:rotate-360"
           onClick={copy}
+          title="Copiar el código"
           style={overlay}
         >
           {svg}

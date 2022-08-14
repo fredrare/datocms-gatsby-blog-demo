@@ -24,6 +24,7 @@ export default function Footer({ socialMedia }) {
                 >
                   <GatsbyImage
                     alt={platformImage.alt}
+                    title={platformImage.title}
                     className="content-center"
                     image={getImage(platformImage.image)}
                   />

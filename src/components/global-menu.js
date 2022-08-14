@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
 import { siteName } from "../common/strings";
 
 export default function Menu() {
-  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const menuItems = [
     { name: "Programación", url: "/categories/programming" },
     { name: "Seguridad", url: "/categories/security" },
@@ -33,6 +33,7 @@ export default function Menu() {
                 <button
                   className="group flex flex-col gap-1 text-white cursor-pointer border border-solid border-transparent rounded bg-transparent lg:hidden outline-none focus:outline-none"
                   type="button"
+                  title="Abrir el menú"
                   onClick={() => setMenuOpen(!menuOpen)}
                 >
                   <div

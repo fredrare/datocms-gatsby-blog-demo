@@ -44,11 +44,15 @@ export const query = graphql`
         excerpt
         date
         coverImage {
+          alt
+          title
           gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 760 })
         }
         author {
           name
           picture {
+            alt
+            title
             gatsbyImageData(
               width: 50
               placeholder: BLURRED

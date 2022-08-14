@@ -3,7 +3,9 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 
 export default function CoverImage({ title, image, slug }) {
-  const imageElement = <GatsbyImage image={getImage(image)} alt={`Cover Image for ${title}`} />;
+  const imageElement = (
+    <GatsbyImage image={getImage(image)} alt={`Portada del post ${title}`} title={title} />
+  );
   return (
     <div>
       {slug ? (
