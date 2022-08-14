@@ -90,7 +90,7 @@ module.exports = {
         legacy: false, // this will not add apple-touch-icon links to <head>
         include_favicon: false, // This will exclude favicon link tag
         icon_options: {
-          purpose: `maskable`,
+          purpose: `any maskable`,
         },
       },
     },
