@@ -6,7 +6,7 @@ import PostBody from "../../components/post-body";
 import PostHeader from "../../components/post-header";
 import SectionSeparator from "../../components/section-separator";
 
-export default function Post({ data: { blog, site, post, morePosts } }) {
+export default function Post({ data: { post, morePosts } }) {
   const lang = {
     lang:
       post?.seo?.tags?.find(x => x?.attributes?.property === "og:locale")?.attributes?.content ||
@@ -14,13 +14,7 @@ export default function Post({ data: { blog, site, post, morePosts } }) {
   };
   const target = React.createRef();
   return (
-    <Container
-      seo={post.seo}
-      favicon={site.favicon}
-      lang={lang}
-      socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]}
-      target={target}
-    >
+    <Container seo={post.seo} lang={lang} target={target}>
       <article className="py-4 mt-4" ref={target}>
         <PostHeader
           title={post.title}
@@ -38,45 +32,6 @@ export default function Post({ data: { blog, site, post, morePosts } }) {
 
 export const query = graphql`
   query PostBySlug($id: String) {
-    site: datoCmsSite {
-      favicon: faviconMetaTags {
-        ...GatsbyDatoCmsFaviconMetaTags
-      }
-    }
-    blog: datoCmsBlog {
-      discordImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
-      }
-      rssImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
-      }
-      twitchImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
-      }
-      youtubeImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
-      }
-    }
     post: datoCmsPost(id: { eq: $id }) {
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
@@ -90,10 +45,10 @@ export const query = graphql`
           ... on DatoCmsImageBlock {
             id: originalId
             image {
+              alt
+              title
               customData
-              fluid(imgixParams: { fm: "webp" }, sizes: "(max-width: 700) 100vw, 700px") {
-                ...GatsbyDatoCmsFluid
-              }
+              gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 760 })
             }
           }
           ... on DatoCmsYoutubeVideo {
@@ -107,16 +62,17 @@ export const query = graphql`
       }
       date
       coverImage {
-        fluid(imgixParams: { fm: "webp" }, sizes: "(max-width: 1500px) 100vw, 1500px") {
-          ...GatsbyDatoCmsFluid
-        }
+        gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 1500 })
       }
       author {
         name
         picture {
-          fixed(width: 48, height: 48, imgixParams: { fm: "webp", fit: "crop", sat: -50 }) {
-            ...GatsbyDatoCmsFixed
-          }
+          gatsbyImageData(
+            width: 50
+            placeholder: BLURRED
+            imgixParams: { fm: "webp", sat: -50 }
+            layout: FIXED
+          )
         }
       }
     }
@@ -131,19 +87,17 @@ export const query = graphql`
         excerpt
         date
         coverImage {
-          small: fluid(
-            imgixParams: { fm: "webp" }
-            sizes: "(max-width: 760px) 100vw, (max-width: 1500px) 50vw, 700px"
-          ) {
-            ...GatsbyDatoCmsFluid
-          }
+          gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 760 })
         }
         author {
           name
           picture {
-            fixed(width: 48, height: 48, imgixParams: { fm: "webp", fit: "crop", sat: -50 }) {
-              ...GatsbyDatoCmsFixed
-            }
+            gatsbyImageData(
+              width: 50
+              placeholder: BLURRED
+              imgixParams: { fm: "webp", sat: -50 }
+              layout: FIXED
+            )
           }
         }
       }

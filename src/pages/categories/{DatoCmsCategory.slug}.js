@@ -3,17 +3,12 @@ import { graphql } from "gatsby";
 import Container from "../../components/container";
 import MoreStories from "../../components/more-stories";
 
-export default function Category({ data: { category, allPosts, site, blog } }) {
+export default function Category({ data: { category, allPosts } }) {
   const lang = {
     lang: "es",
   };
   return (
-    <Container
-      seo={blog.seo}
-      favicon={site.favicon}
-      lang={lang}
-      socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]}
-    >
+    <Container seo={category.seo} lang={lang}>
       <section className="flex-col md:flex-row flex items-center max-w-5xl mx-auto md:justify-between mt-10 mb-16 md:mb-12">
         <h2 className="mb-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
           {category.name}
@@ -27,52 +22,13 @@ export default function Category({ data: { category, allPosts, site, blog } }) {
 
 export const query = graphql`
   query CategoryBySlug($id: String) {
-    site: datoCmsSite {
-      favicon: faviconMetaTags {
-        ...GatsbyDatoCmsFaviconMetaTags
-      }
-    }
-    blog: datoCmsBlog {
-      seo: seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
-      }
-      discordImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
-      }
-      rssImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
-      }
-      twitchImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
-      }
-      youtubeImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
-      }
-    }
     category: datoCmsCategory(id: { eq: $id }) {
       id
       name
       description
+      seo: seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
     }
     allPosts: allDatoCmsPost(
       sort: { fields: date, order: DESC }
@@ -85,22 +41,17 @@ export const query = graphql`
         excerpt
         date
         coverImage {
-          large: fluid(imgixParams: { fm: "jpg" }, sizes: "(max-width: 1500px) 100vw, 1500px") {
-            ...GatsbyDatoCmsFluid
-          }
-          small: fluid(
-            imgixParams: { fm: "jpg" }
-            sizes: "(max-width: 760px) 100vw, (max-width: 1500px) 50vw, 700px"
-          ) {
-            ...GatsbyDatoCmsFluid
-          }
+          gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 760 })
         }
         author {
           name
           picture {
-            fixed(width: 48, height: 48, imgixParams: { fm: "jpg", fit: "crop", sat: -50 }) {
-              ...GatsbyDatoCmsFixed
-            }
+            gatsbyImageData(
+              width: 50
+              placeholder: BLURRED
+              imgixParams: { fm: "webp", sat: -50 }
+              layout: FIXED
+            )
           }
         }
       }

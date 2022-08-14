@@ -13,7 +13,7 @@ export default function PostHeader({ title, coverImage, date, author }) {
         <Avatar name={author.name} picture={author.picture} />
       </div>
       <div className="mb-8 md:mb-16 mx-auto rounded-lg overflow-hidden border-white shadow-solid-md">
-        <CoverImage title={title} fluid={coverImage.fluid} />
+        <CoverImage title={title} image={coverImage} />
       </div>
       <div className="max-w-4xl mx-auto">
         <div className="block md:hidden mb-6">

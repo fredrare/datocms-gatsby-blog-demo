@@ -1,24 +1,17 @@
 import React from "react";
-import Image from "gatsby-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 
-export default function CoverImage({ title, fluid, slug }) {
-  const image = (
-    <Image
-      fluid={{
-        ...fluid,
-        alt: `Cover Image for ${title}`,
-      }}
-    />
-  );
+export default function CoverImage({ title, image, slug }) {
+  const imageElement = <GatsbyImage image={getImage(image)} alt={`Cover Image for ${title}`} />;
   return (
     <div>
       {slug ? (
         <Link to={`/posts/${slug}`} aria-label={title} title={title}>
-          {image}
+          {imageElement}
         </Link>
       ) : (
-        image
+        imageElement
       )}
     </div>
   );

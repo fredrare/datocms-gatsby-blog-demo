@@ -5,7 +5,7 @@ import Intro from "../components/intro";
 import MoreStories from "../components/more-stories";
 import { graphql } from "gatsby";
 
-export default function Index({ data: { allPosts, site, blog } }) {
+export default function Index({ data: { allPosts, blog } }) {
   const heroPost = allPosts.nodes[0];
   const morePosts = allPosts.nodes.slice(1);
   const lang = {
@@ -13,12 +13,7 @@ export default function Index({ data: { allPosts, site, blog } }) {
   };
 
   return (
-    <Container
-      seo={blog.seo}
-      favicon={site.favicon}
-      lang={lang}
-      socialMedia={[blog.twitchImage, blog.discordImage, blog.youtubeImage, blog.rssImage]}
-    >
+    <Container seo={blog.seo} lang={lang}>
       <Intro />
       {heroPost && (
         <HeroPost
@@ -37,46 +32,9 @@ export default function Index({ data: { allPosts, site, blog } }) {
 
 export const query = graphql`
   {
-    site: datoCmsSite {
-      favicon: faviconMetaTags {
-        ...GatsbyDatoCmsFaviconMetaTags
-      }
-    }
     blog: datoCmsBlog {
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
-      }
-      discordImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
-      }
-      rssImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
-      }
-      twitchImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
-      }
-      youtubeImage {
-        title
-        alt
-        customData
-        fixed(width: 50, imgixParams: { fm: "png" }) {
-          ...GatsbyDatoCmsFixed
-        }
       }
     }
     allPosts: allDatoCmsPost(sort: { fields: date, order: DESC }, limit: 20) {
@@ -86,22 +44,17 @@ export const query = graphql`
         excerpt
         date
         coverImage {
-          large: fluid(imgixParams: { fm: "webp" }, sizes: "(max-width: 1500px) 100vw, 1500px") {
-            ...GatsbyDatoCmsFluid
-          }
-          small: fluid(
-            imgixParams: { fm: "webp" }
-            sizes: "(max-width: 760px) 100vw, (max-width: 1500px) 50vw, 700px"
-          ) {
-            ...GatsbyDatoCmsFluid
-          }
+          gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 760 })
         }
         author {
           name
           picture {
-            fixed(width: 48, height: 48, imgixParams: { fm: "webp", fit: "crop", sat: -50 }) {
-              ...GatsbyDatoCmsFixed
-            }
+            gatsbyImageData(
+              width: 50
+              placeholder: BLURRED
+              imgixParams: { fm: "webp", sat: -50 }
+              layout: FIXED
+            )
           }
         }
       }

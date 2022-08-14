@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import Image from "gatsby-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { siteName } from "../common/strings";
 
 export default function Footer({ socialMedia }) {
@@ -22,10 +22,10 @@ export default function Footer({ socialMedia }) {
                   title={platformImage.title}
                   className="px-3 py-2 hover:opacity-75"
                 >
-                  <Image
-                    className="content-center"
-                    fixed={platformImage.fixed}
+                  <GatsbyImage
                     alt={platformImage.alt}
+                    className="content-center"
+                    image={getImage(platformImage.image)}
                   />
                 </a>
               </li>

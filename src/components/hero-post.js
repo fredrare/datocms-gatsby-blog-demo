@@ -13,7 +13,7 @@ export default function HeroPost({ title, coverImage, date, excerpt, author, slu
       </h2>
       <div className="max-w-full md:max-w-md lg:max-w-4xl w-full bg-white rounded-lg overflow-hidden shadow-solid-md hover:shadow-solid-lg focus-within:shaadow-solid-lg transform-gpu duration-200 hover:-translate-x-1 focus-within:-translate-y-1 hover:-translate-y-1 focus-within:-translate-x-1 flex flex-col items-center justify-between lg:flex-row">
         <div className="border-b lg:border-b-0 lg:border-r w-full h-full">
-          <CoverImage slug={slug} title={title} fluid={coverImage.small} />
+          <CoverImage slug={slug} title={title} image={coverImage} />
         </div>
         <div className="p-4 flex flex-col justify-between">
           <h3 className="text-3xl mb-3 leading-snug">

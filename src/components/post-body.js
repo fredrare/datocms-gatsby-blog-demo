@@ -1,6 +1,6 @@
 import { isCode } from "datocms-structured-text-utils";
 import { Link } from "gatsby";
-import Image from "gatsby-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React, { useRef, useState, useEffect } from "react";
 import { appendKeyToValidElement, renderNodeRule, StructuredText } from "react-datocms";
 import ReactPlayer from "react-player/youtube";
@@ -105,6 +105,14 @@ const renderInlineCode = renderNodeRule(
 );
 
 const renderImage = record => {
+  const imageElement = (
+    <GatsbyImage
+      image={getImage(record.image)}
+      alt={record.image.alt}
+      title={record.image.title}
+      className="prose-unprose rounded-lg overflow-none"
+    />
+  );
   if (record.image.customData.isLink)
     return (
       <Link
@@ -112,11 +120,10 @@ const renderImage = record => {
         to={record.image.customData.link}
         title={record.image.customData.linkAlt}
       >
-        <Image fluid={record.image.fluid} className="prose-unprose rounded-lg overflow-none" />
+        {imageElement}
       </Link>
     );
-  else
-    return <Image fluid={record.image.fluid} className="prose-unprose rounded-lg overflow-none" />;
+  return imageElement;
 };
 
 const renderVideo = record => {
