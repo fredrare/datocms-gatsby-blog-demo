@@ -79,16 +79,18 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        background_color: `#FFF`,
-        cache_busting_mode: `none`,
-        display: `standalone`,
-        icon: `src/images/anti.png`,
-        name: `Fredrare.com`,
+        name: `Fredrare`,
         short_name: `Fredrare`,
         start_url: `/`,
+        background_color: `#F8FAFC`,
         theme_color: `#${process.env.PRIMARY_COLOR}`,
+        display: `standalone`,
+        cache_busting_mode: `none`,
+        icon: `src/images/anti.png`,
+        legacy: false, // this will not add apple-touch-icon links to <head>
+        include_favicon: false, // This will exclude favicon link tag
         icon_options: {
-          purpose: `any`,
+          purpose: `maskable`,
         },
       },
     },
