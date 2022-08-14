@@ -1,7 +1,7 @@
 require(`dotenv`).config();
 
-const title = `Fredrare.com`
-const pathPrefix = `/posts`
+const title = `Fredrare.com`;
+const pathPrefix = `/posts`;
 
 module.exports = {
   siteMetadata: {
@@ -56,7 +56,7 @@ module.exports = {
                 }
               }
             `,
-            serialize: function({query: { posts }}) {
+            serialize: function ({ query: { posts } }) {
               return posts.edges.map(({ node }) => ({
                 description: node.excerpt,
                 author: node.author.name,
@@ -64,17 +64,17 @@ module.exports = {
                 title: node.title,
                 url: `${process.env.HOSTNAME}${pathPrefix}/${node.slug}`,
                 custom_elements: [
-                  {'author:avatar': node.author.picture.url},
-                  {'site:color': process.env.PRIMARY_COLOR},
-                  {'post:image': node.seoSettings.image.url}
-                ]
-              }))
+                  { "author:avatar": node.author.picture.url },
+                  { "site:color": process.env.PRIMARY_COLOR },
+                  { "post:image": node.seoSettings.image.url },
+                ],
+              }));
             },
             title: title,
             output: `feed.rss`,
-          }
-        ]
-      }
+          },
+        ],
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -88,15 +88,15 @@ module.exports = {
         start_url: `/`,
         theme_color: `#${process.env.PRIMARY_COLOR}`,
         icon_options: {
-          purpose: `any maskable`
-        }
+          purpose: `any`,
+        },
       },
     },
     {
       resolve: `gatsby-plugin-offline`,
       options: {
         precachePages: [`/`],
-      }
+      },
     },
     `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,

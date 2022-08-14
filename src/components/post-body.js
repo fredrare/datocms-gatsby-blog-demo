@@ -7,6 +7,7 @@ import ReactPlayer from "react-player/youtube";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { xonokai as codeBlockStyle } from "react-syntax-highlighter/dist/esm/styles/prism";
 import CopyCode from "./copyCode";
+import { WindowControls } from "./icons";
 
 const justify = {
   textAlign: "justify",
@@ -51,31 +52,14 @@ const renderCodeBlock = renderNodeRule(isCode, ({ node, key }) => {
           return (
             <pre className="rounded-lg border-white shadow-solid-md flex flex-col p-0 overflow-hidden">
               <button
-                className="h-max bg-slate-700 p-4 w-full flex flex-row justify-between"
+                className="relative h-max bg-slate-700 p-4 w-full flex flex-row justify-between"
                 onClick={() => setOpen(!open)}
                 title={open ? "Clic para minimizar" : "Clic para maximizar"}
               >
-                <div className="flex flex-row gap-2 w-min group">
-                  <div className="w-max aspect-square rounded-full border-min border-red-500/90">
-                    <div className="flex flex-col w-3 h-3 rounded-full bg-red-500 border-2 border-red-500 items-center justify-center">
-                      <div className="w-full h-1px translate-y-1/2 rotate-45 bg-red-500 group-hover:bg-red-900 "></div>
-                      <div className="w-full h-1px -translate-y-1/2 -rotate-45 bg-red-500 group-hover:bg-red-900 "></div>
-                    </div>
-                  </div>
+                <span className="absolute left-0 p-4 inset-y-0">
+                  <WindowControls />
+                </span>
 
-                  <div className="w-max aspect-square rounded-full border-min border-yellow-500/90">
-                    <div className="flex flex-col w-3 h-3 rounded-full bg-yellow-500 border-2 border-yellow-500 items-center justify-center">
-                      <div className="w-full h-1px bg-yellow-500 group-hover:bg-yellow-900 "></div>
-                    </div>
-                  </div>
-                  <div className="w-max aspect-square rounded-full border-min border-green-500/90">
-                    <div className="flex flex-col w-3 h-3 rounded-full bg-green-500 border-2 border-green-500 items-center justify-center">
-                      <div className="w-full h-full bg-green-500 group-hover:bg-green-900 flex items-center scale-75">
-                        <div className="w-full h-0.5 bg-green-500 -rotate-45 scale-150 rounded-lg"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 <p className="text-xs flex items-center h-max m-auto">
                   {open ? node.language + (filename ? " - " + filename : "") : "Clic para mostrar"}
                 </p>
