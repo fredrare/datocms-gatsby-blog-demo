@@ -95,6 +95,7 @@ const renderInlineCode = renderNodeRule(
         className="inline-code rounded bg-slate-200 text-slate-800 px-2 py-1 font-monoligatures slashed-zero"
         style={{
           fontVariantLigatures: ["normal", "discretionary-ligatures", "historical-ligatures"],
+          wordWrap: "break-word",
         }}
       >
         {node.value}

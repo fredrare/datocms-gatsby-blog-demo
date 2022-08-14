@@ -82,7 +82,7 @@ module.exports = {
         name: `Fredrare`,
         short_name: `Fredrare`,
         start_url: `/`,
-        background_color: `#F8FAFC`,
+        background_color: `#f8fafc`,
         theme_color: `#${process.env.PRIMARY_COLOR}`,
         display: `standalone`,
         cache_busting_mode: `none`,
