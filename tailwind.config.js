@@ -61,6 +61,9 @@ module.exports = {
       fontFamily: {
         monoligatures: ["Iosevka Extended", "JuliaMono", "Consolas", "Courier", "monospace"],
       },
+      transitionDuration: {
+        0: "0ms",
+      },
     },
   },
   variants: {

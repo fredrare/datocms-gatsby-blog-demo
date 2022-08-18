@@ -1,6 +1,6 @@
 {
   "name": "fredrare-blog",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "private": true,
   "description": "Fredrare's personal blog. Hopefully, it has useful information for you.",
   "author": "Franco Ramirez",
@@ -20,8 +20,8 @@
   "dependencies": {
     "@tailwindcss/typography": "^0.5.4",
     "autoprefixer": "^10.4.8",
-    "date-fns": "^2.22.1",
-    "dotenv": "^10.0.0",
+    "date-fns": "^2.29.1",
+    "dotenv": "^16.0.1",
     "gatsby": "^4.20.0",
     "gatsby-plugin-feed": "^4.20.0",
     "gatsby-plugin-image": "^2.20.0",
@@ -30,12 +30,12 @@
     "gatsby-plugin-postcss": "^5.20.0",
     "gatsby-plugin-react-helmet": "^5.20.0",
     "gatsby-source-datocms": "^4.0.4",
-    "postcss": "^8.2.6",
+    "postcss": "^8.4.16",
     "react": "^18.2.0",
     "react-datocms": "^3.0.15",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-player": "^2.9.0",
+    "react-player": "^2.10.1",
     "react-syntax-highlighter": "^15.5.0",
     "tailwindcss": "^3.1.8"
   }
