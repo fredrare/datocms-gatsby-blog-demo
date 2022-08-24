@@ -71,17 +71,22 @@ export default function Menu() {
             <div
               className={
                 "overflow-hidden lg:flex flex-grow items-center transform-gpu delay-300 duration-300 " +
-                (menuOpen ? "max-h-20" : "opacity-0 max-h-0")
+                (menuOpen
+                  ? "max-h-20 lg:max-h-max"
+                  : "opacity-0 lg:opacity-100 max-h-0 lg:max-h-max")
               }
             >
               <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
                 {menuItems?.map((menuItem, i) => (
                   <li className="nav-item" key={`menu-${i}`}>
                     <Link
-                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                      className="group flex flex-col px-3 py-2 w-max items-center text-xs uppercase font-bold leading-snug text-white"
                       to={menuItem.url}
                     >
                       {menuItem.name}
+                      <span className="w-full flex justify-start">
+                        <span className="w-0 group-hover:w-full group-focus-visible:w-full transform-gpu duration-300 h-0.5 bg-white"></span>
+                      </span>
                     </Link>
                   </li>
                 ))}
