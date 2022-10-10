@@ -1,13 +1,13 @@
-import React from "react";
-import Avatar from "../components/avatar";
-import Date from "../components/date";
-import CoverImage from "../components/cover-image";
-import { Link } from "gatsby";
-import { Calendar } from "./icons";
+import React from "react"
+import Avatar from "../components/avatar"
+import Date from "../components/date"
+import CoverImage from "../components/cover-image"
+import { Link } from "gatsby"
+import { Calendar } from "./icons"
 
 export default function HeroPost({ title, coverImage, date, excerpt, author, slug }) {
   return (
-    <section className="flex flex-col justify-center items-center w-full max-w-5xl mx-auto pb-8">
+    <section className="flex flex-col justify-center items-center w-full max-w-5xl mx-auto pb-12">
       <h2 className="mb-8 w-full text-left text-6xl md:text-6xl font-bold tracking-tighter leading-tight">
         Última publicación
       </h2>
@@ -29,5 +29,5 @@ export default function HeroPost({ title, coverImage, date, excerpt, author, slu
         </div>
       </div>
     </section>
-  );
+  )
 }

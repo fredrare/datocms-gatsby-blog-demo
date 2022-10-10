@@ -9,7 +9,7 @@ export default function ReadingProgress({ target }) {
       if (!target.current) return
 
       const element = target.current
-      const totalHeight = element.clientHeight - element.offsetTop - window.innerHeight - 150
+      const totalHeight = element.clientHeight - element.offsetTop - window.innerHeight - 190
       const windowScrollTop =
         window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
 
