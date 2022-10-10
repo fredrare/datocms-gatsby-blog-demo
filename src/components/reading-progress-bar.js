@@ -1,25 +1,25 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React from "react"
+import { useEffect, useState } from "react"
 
 export default function ReadingProgress({ target }) {
-  const [readingProgress, setReadingProgress] = useState(0);
+  const [readingProgress, setReadingProgress] = useState(0)
 
   useEffect(() => {
     const scrollListener = () => {
-      if (!target.current) return;
+      if (!target.current) return
 
-      const element = target.current;
-      const totalHeight = element.clientHeight - element.offsetTop - window.innerHeight + 230;
+      const element = target.current
+      const totalHeight = element.clientHeight - element.offsetTop - window.innerHeight - 150
       const windowScrollTop =
-        window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
 
-      if (windowScrollTop === 0) return setReadingProgress(0);
-      if (windowScrollTop > totalHeight) return setReadingProgress(100);
-      setReadingProgress((windowScrollTop / totalHeight) * 100);
-    };
-    window.addEventListener("scroll", scrollListener);
-    return () => window.removeEventListener("scroll", scrollListener);
-  }, [target]);
+      if (windowScrollTop === 0) return setReadingProgress(0)
+      if (windowScrollTop > totalHeight) return setReadingProgress(100)
+      setReadingProgress((windowScrollTop / totalHeight) * 100)
+    }
+    window.addEventListener("scroll", scrollListener)
+    return () => window.removeEventListener("scroll", scrollListener)
+  }, [target])
 
   return (
     <div
@@ -31,5 +31,5 @@ export default function ReadingProgress({ target }) {
         zIndex: 1000,
       }}
     />
-  );
+  )
 }

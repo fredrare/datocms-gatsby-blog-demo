@@ -1,16 +1,17 @@
-import React from "react";
-import { graphql } from "gatsby";
-import Container from "../../components/container";
-import MoreStories from "../../components/more-stories";
-import PostBody from "../../components/post-body";
-import PostHeader from "../../components/post-header";
-import SectionSeparator from "../../components/section-separator";
+import React from "react"
+import { graphql } from "gatsby"
+import Container from "../../components/container"
+import MoreStories from "../../components/more-stories"
+import PostBody from "../../components/post-body"
+import PostHeader from "../../components/post-header"
+import SectionSeparator from "../../components/section-separator"
+import Comments from "../../components/postComments"
 
 export default function Post({ data: { post, morePosts } }) {
   const lang = {
     lang: "es",
-  };
-  const target = React.createRef();
+  }
+  const target = React.createRef()
   return (
     <Container seo={post.seo} lang={lang} target={target}>
       <article className="py-4 mt-4" ref={target}>
@@ -21,11 +22,12 @@ export default function Post({ data: { post, morePosts } }) {
           author={post.author}
         />
         <PostBody content={post.content} />
+        <Comments />
       </article>
       <SectionSeparator />
       {morePosts.nodes.length > 0 && <MoreStories posts={morePosts.nodes} />}
     </Container>
-  );
+  )
 }
 
 export const query = graphql`
@@ -109,4 +111,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`
