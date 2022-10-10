@@ -88,5 +88,5 @@ main .pagination-loader-container {
   background-image: url(https://github.com/images/modules/pulls/progressive-disclosure-line.svg);
 }
 main .gsc-loading-image {
-  background-image: url(https://github.githubassets.com/images/mona-loading-default.gif);
+  background-image: url(../img/loader-neko-0.1.svg);
 }
