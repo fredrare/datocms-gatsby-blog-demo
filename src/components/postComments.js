@@ -8,7 +8,7 @@ const Comments = () => {
   }, [])
   return (
     <section className="max-w-3xl mx-auto py-8">
-      <div className="px-6 py-4 rounded-lg overflow-hidden bg-white border-white shadow-solid-md">
+      <div className="px-6 py-4 rounded-lg overflow-x-hidden bg-white border-white shadow-solid-md max-h-[50vh] overflow-y-scroll">
         <Giscus
           id="comments"
           repo="fredrare/blog-interactions"
