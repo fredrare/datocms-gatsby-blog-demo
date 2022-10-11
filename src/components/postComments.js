@@ -4,7 +4,7 @@ import Giscus from "@giscus/react"
 const Comments = () => {
   const [theme, setTheme] = useState("light_protanopia")
   useEffect(() => {
-    setTheme(document.location.origin + "/css/comments-0.2.css")
+    setTheme(document.location.origin + "/css/comments-0.3.css")
   }, [])
   return (
     <section className="max-w-3xl mx-auto py-8">
