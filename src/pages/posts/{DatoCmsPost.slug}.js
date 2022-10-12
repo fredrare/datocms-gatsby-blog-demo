@@ -95,6 +95,9 @@ export const query = graphql`
           title
           gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 760 })
         }
+        seoSettings {
+          title
+        }
         author {
           name
           picture {

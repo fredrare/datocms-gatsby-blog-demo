@@ -1,5 +1,5 @@
-import React from "react";
-import PostPreview from "../components/post-preview";
+import React from "react"
+import PostPreview from "../components/post-preview"
 
 export default function MoreStories({ posts, title }) {
   const morePosts = posts?.map(post => (
@@ -11,9 +11,10 @@ export default function MoreStories({ posts, title }) {
         author={post.author}
         slug={post.slug}
         excerpt={post.excerpt}
+        commentSource={post.seoSettings?.title}
       />
     </li>
-  ));
+  ))
   return (
     <section className="mx-auto w-full max-w-5xl">
       <h2 className="mb-8 text-6xl md:text-6xl font-bold tracking-tighter leading-tight">
@@ -23,5 +24,5 @@ export default function MoreStories({ posts, title }) {
         {morePosts?.length ? morePosts : <div>No hay publicaciones aún...</div>}
       </ul>
     </section>
-  );
+  )
 }

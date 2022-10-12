@@ -1,16 +1,16 @@
-import React from "react";
-import Container from "../components/container";
-import HeroPost from "../components/hero-post";
-import Intro from "../components/intro";
-import MoreStories from "../components/more-stories";
-import { graphql } from "gatsby";
+import React from "react"
+import Container from "../components/container"
+import HeroPost from "../components/hero-post"
+import Intro from "../components/intro"
+import MoreStories from "../components/more-stories"
+import { graphql } from "gatsby"
 
 export default function Index({ data: { allPosts, blog } }) {
-  const heroPost = allPosts.nodes[0];
-  const morePosts = allPosts.nodes.slice(1);
+  const heroPost = allPosts.nodes[0]
+  const morePosts = allPosts.nodes.slice(1)
   const lang = {
     lang: "es",
-  };
+  }
 
   return (
     <Container seo={blog.seo} lang={lang}>
@@ -23,11 +23,12 @@ export default function Index({ data: { allPosts, blog } }) {
           author={heroPost.author}
           slug={heroPost.slug}
           excerpt={heroPost.excerpt}
+          commentSource={heroPost.seoSettings?.title}
         />
       )}
       {morePosts.length > 0 && <MoreStories posts={morePosts} />}
     </Container>
-  );
+  )
 }
 
 export const query = graphql`
@@ -43,6 +44,9 @@ export const query = graphql`
         slug
         excerpt
         date
+        seoSettings {
+          title
+        }
         coverImage {
           alt
           title
@@ -64,4 +68,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`

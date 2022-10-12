@@ -1,12 +1,12 @@
-import React from "react";
-import { graphql } from "gatsby";
-import Container from "../../components/container";
-import MoreStories from "../../components/more-stories";
+import React from "react"
+import { graphql } from "gatsby"
+import Container from "../../components/container"
+import MoreStories from "../../components/more-stories"
 
 export default function Category({ data: { category, allPosts } }) {
   const lang = {
     lang: "es",
-  };
+  }
   return (
     <Container seo={category.seo} lang={lang}>
       <section className="flex-col md:flex-row flex items-center max-w-5xl mx-auto md:justify-between mt-10 mb-16 md:mb-12">
@@ -17,7 +17,7 @@ export default function Category({ data: { category, allPosts } }) {
       </section>
       <MoreStories posts={allPosts.nodes} title="Publicaciones" />
     </Container>
-  );
+  )
 }
 
 export const query = graphql`
@@ -45,6 +45,9 @@ export const query = graphql`
           title
           gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 760 })
         }
+        seoSettings {
+          title
+        }
         author {
           name
           picture {
@@ -61,4 +64,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`
