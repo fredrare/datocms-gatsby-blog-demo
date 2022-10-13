@@ -19,7 +19,7 @@ const Comments = () => {
           term="Welcome to @giscus/react component!"
           reactionsEnabled="1"
           emitMetadata="0"
-          inputPosition="top"
+          inputPosition="bottom"
           theme={theme}
           lang="es"
           loading="lazy"

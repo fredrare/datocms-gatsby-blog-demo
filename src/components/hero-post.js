@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import Avatar from "../components/avatar"
 import Date from "../components/date"
 import CoverImage from "../components/cover-image"
 import { Link } from "gatsby"
-import { Calendar, Comments, Reactions } from "./icons"
+import { Calendar } from "./icons"
 import useFeedback from "../hooks/useFeedback"
 import Feedback from "./feedback"
 

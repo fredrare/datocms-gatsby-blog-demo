@@ -1,24 +1,24 @@
-import { isCode } from "datocms-structured-text-utils";
-import { Link } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import React, { useRef, useState, useEffect } from "react";
-import { appendKeyToValidElement, renderNodeRule, StructuredText } from "react-datocms";
-import ReactPlayer from "react-player/youtube";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { xonokai as codeBlockStyle } from "react-syntax-highlighter/dist/esm/styles/prism";
-import CopyCode from "./copyCode";
-import { WindowControls } from "./icons";
+import { isCode } from "datocms-structured-text-utils"
+import { Link } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import React, { useRef, useState, useEffect } from "react"
+import { appendKeyToValidElement, renderNodeRule, StructuredText } from "react-datocms"
+import ReactPlayer from "react-player/youtube"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { xonokai as codeBlockStyle } from "react-syntax-highlighter/dist/esm/styles/prism"
+import CopyCode from "./copyCode"
+import { WindowControls } from "./icons"
 
 const justify = {
   textAlign: "justify",
-};
+}
 
 const renderCodeBlock = renderNodeRule(isCode, ({ node, key }) => {
   const filename = node.code
     .match(/^§ ?(.+?) ?§/g)?.[0]
     .replaceAll("§", "")
-    .trim();
-  if (filename) node.code = node.code.split("\n").slice(1).join("\n");
+    .trim()
+  if (filename) node.code = node.code.split("\n").slice(1).join("\n")
   return appendKeyToValidElement(
     <div className="font-code">
       <SyntaxHighlighter
@@ -43,12 +43,12 @@ const renderCodeBlock = renderNodeRule(isCode, ({ node, key }) => {
           paddingRight: "3.5em",
         }}
         PreTag={({ children }) => {
-          const [open, setOpen] = useState(true);
-          const [height, setHeight] = useState(0);
-          const codeRef = useRef();
+          const [open, setOpen] = useState(true)
+          const [height, setHeight] = useState(0)
+          const codeRef = useRef()
           useEffect(() => {
-            setHeight(codeRef?.current?.offsetHeight);
-          }, []);
+            setHeight(codeRef?.current?.offsetHeight)
+          }, [])
           return (
             <pre className="rounded-lg border-white shadow-solid-md flex flex-col p-0 overflow-hidden">
               <button
@@ -77,17 +77,17 @@ const renderCodeBlock = renderNodeRule(isCode, ({ node, key }) => {
                 </CopyCode>
               </section>
             </pre>
-          );
+          )
         }}
       />
     </div>,
     key
-  );
-});
+  )
+})
 
 const renderInlineCode = renderNodeRule(
   node => {
-    return node.type === "span" && node.marks && node.marks[0] === "code";
+    return node.type === "span" && node.marks && node.marks[0] === "code"
   },
   ({ node, key }) => {
     return appendKeyToValidElement(
@@ -101,9 +101,9 @@ const renderInlineCode = renderNodeRule(
         {node.value}
       </span>,
       key
-    );
+    )
   }
-);
+)
 
 const renderImage = record => {
   const imageElement = (
@@ -113,7 +113,7 @@ const renderImage = record => {
       title={record.image.title}
       className="prose-unprose rounded-lg overflow-none"
     />
-  );
+  )
   if (record.image.customData.isLink)
     return (
       <Link
@@ -123,9 +123,9 @@ const renderImage = record => {
       >
         {imageElement}
       </Link>
-    );
-  return imageElement;
-};
+    )
+  return imageElement
+}
 
 const renderVideo = record => {
   return (
@@ -140,30 +140,28 @@ const renderVideo = record => {
         }}
       />
     </div>
-  );
-};
+  )
+}
 
 const renderBlock = ({ record }) => {
-  if (record.__typename === "DatoCmsImageBlock") return renderImage(record);
-  else if (record.__typename === "DatoCmsYoutubeVideo") return renderVideo(record);
+  if (record.__typename === "DatoCmsImageBlock") return renderImage(record)
+  else if (record.__typename === "DatoCmsYoutubeVideo") return renderVideo(record)
   return (
     <>
       <p>Upsy woopsy, algo raro pasó aquí xd</p>
       <pre>{JSON.stringify(record, null, 2)}</pre>
     </>
-  );
-};
+  )
+}
 
 export default function PostBody({ content }) {
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="prose prose-lg prose-blue max-w-3xl" style={justify}>
-        <StructuredText
-          customRules={[renderCodeBlock, renderInlineCode]}
-          data={content}
-          renderBlock={renderBlock}
-        />
-      </div>
+    <div className="prose prose-lg prose-blue max-w-2xl mx-auto tracking-wide" style={justify}>
+      <StructuredText
+        customRules={[renderCodeBlock, renderInlineCode]}
+        data={content}
+        renderBlock={renderBlock}
+      />
     </div>
-  );
+  )
 }

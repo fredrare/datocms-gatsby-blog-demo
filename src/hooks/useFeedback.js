@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 
 const useFeedback = commentSource => {
   const [commentNumber, setCommentNumber] = useState(0)
@@ -16,7 +16,7 @@ const useFeedback = commentSource => {
         setCommentNumber(data?.discussion?.totalCommentCount || 0)
         setReactionNumber(data?.discussion?.reactionCount || 0)
       })
-  }, [])
+  }, [commentSource])
 
   return { commentNumber, reactionNumber }
 }
