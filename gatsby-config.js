@@ -1,7 +1,8 @@
-require(`dotenv`).config();
+require(`dotenv`).config()
 
-const title = `Fredrare.com`;
-const pathPrefix = `/posts`;
+const title = `Fredrare.com`
+const name = `Fredrare`
+const pathPrefix = `/posts`
 
 module.exports = {
   siteMetadata: {
@@ -68,9 +69,15 @@ module.exports = {
                   { "site:color": process.env.PRIMARY_COLOR },
                   { "post:image": node.seoSettings.image.url },
                 ],
-              }));
+              }))
             },
-            title: title,
+            title: name,
+            site_url: "https://fredrare.com",
+            link: "https://fredrare.com",
+            image_url:
+              "https://www.datocms-assets.com/46144/1660453838-anti-logo-loop.gif?w=120&h=120",
+            ttl: 360,
+            language: "es",
             output: `feed.rss`,
           },
         ],
@@ -104,4 +111,4 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
   ],
-};
+}
