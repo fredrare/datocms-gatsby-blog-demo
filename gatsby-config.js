@@ -74,8 +74,7 @@ module.exports = {
             title: name,
             site_url: "https://fredrare.com",
             link: "https://fredrare.com",
-            image_url:
-              "https://www.datocms-assets.com/46144/1660453838-anti-logo-loop.gif?w=120&h=120",
+            image_url: "https://www.datocms-assets.com/46144/1660453838-anti-logo-loop.gif",
             ttl: 360,
             language: "es",
             output: `feed.rss`,
