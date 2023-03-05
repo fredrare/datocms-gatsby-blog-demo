@@ -11,7 +11,6 @@ export default function MoreStories({ posts, title }) {
         author={post.author}
         slug={post.slug}
         excerpt={post.excerpt}
-        commentSource={post.seoSettings?.title}
       />
     </li>
   ))

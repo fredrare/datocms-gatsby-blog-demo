@@ -44,26 +44,10 @@ export const query = graphql`
         slug
         excerpt
         date
-        seoSettings {
-          title
-        }
         coverImage {
           alt
           title
           gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 760 })
-        }
-        author {
-          name
-          picture {
-            alt
-            title
-            gatsbyImageData(
-              width: 50
-              placeholder: BLURRED
-              imgixParams: { fm: "webp", sat: -50 }
-              layout: FIXED
-            )
-          }
         }
       }
     }

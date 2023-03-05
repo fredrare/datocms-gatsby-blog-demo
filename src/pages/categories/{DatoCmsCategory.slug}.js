@@ -45,22 +45,6 @@ export const query = graphql`
           title
           gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED, imgixParams: { maxW: 760 })
         }
-        seoSettings {
-          title
-        }
-        author {
-          name
-          picture {
-            alt
-            title
-            gatsbyImageData(
-              width: 50
-              placeholder: BLURRED
-              imgixParams: { fm: "webp", sat: -50 }
-              layout: FIXED
-            )
-          }
-        }
       }
     }
   }

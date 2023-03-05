@@ -1,23 +1,10 @@
 import React from "react"
-import Avatar from "../components/avatar"
 import Date from "../components/date"
 import CoverImage from "./cover-image"
 import { Link } from "gatsby"
 import { Calendar } from "./icons"
-import useFeedback from "../hooks/useFeedback"
-import Feedback from "./feedback"
 
-export default function PostPreview({
-  title,
-  coverImage,
-  date,
-  excerpt,
-  author,
-  slug,
-  commentSource,
-}) {
-  const { commentNumber, reactionNumber } = useFeedback(commentSource)
-
+export default function PostPreview({ title, coverImage, date, excerpt, slug }) {
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-solid-md hover:shadow-solid-lg focus-within:shaadow-solid-lg transform-gpu duration-200 hover:-translate-x-1 focus-within:-translate-y-1 hover:-translate-y-1 focus-within:-translate-x-1">
       <div className="border-b">
@@ -34,10 +21,6 @@ export default function PostPreview({
           <Date dateString={date} />
         </div>
         <p className="text-lg leading-relaxed">{excerpt}</p>
-        <div className="flex justify-between w-full">
-          <Avatar name={author.name} picture={author.picture} />
-          <Feedback commentNumber={commentNumber} reactionNumber={reactionNumber} />
-        </div>
       </div>
     </div>
   )

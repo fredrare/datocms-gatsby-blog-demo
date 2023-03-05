@@ -1,11 +1,17 @@
-import React from "react";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { Link } from "gatsby";
+import React from "react"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { Link } from "gatsby"
 
 export default function CoverImage({ title, image, slug }) {
   const imageElement = (
-    <GatsbyImage image={getImage(image)} alt={`Portada del post ${title}`} title={title} />
-  );
+    <GatsbyImage
+      image={getImage(image)}
+      alt={`Portada del post ${title}`}
+      title={title}
+      imgClassName="rounded-lg overflow-hidden"
+      className="rounded-lg overflow-hidden"
+    />
+  )
   return (
     <div>
       {slug ? (
@@ -16,5 +22,5 @@ export default function CoverImage({ title, image, slug }) {
         imageElement
       )}
     </div>
-  );
+  )
 }

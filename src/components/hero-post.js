@@ -1,22 +1,10 @@
 import React from "react"
-import Avatar from "../components/avatar"
 import Date from "../components/date"
 import CoverImage from "../components/cover-image"
 import { Link } from "gatsby"
 import { Calendar } from "./icons"
-import useFeedback from "../hooks/useFeedback"
-import Feedback from "./feedback"
 
-export default function HeroPost({
-  title,
-  coverImage,
-  date,
-  excerpt,
-  author,
-  slug,
-  commentSource,
-}) {
-  const { commentNumber, reactionNumber } = useFeedback(commentSource)
+export default function HeroPost({ title, coverImage, date, excerpt, slug }) {
   return (
     <section className="flex flex-col justify-center items-center w-full max-w-5xl mx-auto pb-12">
       <h2 className="mb-8 w-full text-left text-6xl md:text-6xl font-bold tracking-tighter leading-tight">
@@ -36,10 +24,6 @@ export default function HeroPost({
             <Calendar /> <Date dateString={date} />
           </div>
           <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-          <div className="flex justify-between w-full">
-            <Avatar name={author.name} picture={author.picture} />
-            <Feedback commentNumber={commentNumber} reactionNumber={reactionNumber} />
-          </div>
         </div>
       </div>
     </section>
